@@ -1,4 +1,7 @@
-# Caminhos (Paths)
+# Caminho para Planilha
+PLANILHA_CONTROLE = 'planilha_teste.csv'
+
+# Caminhos para Mensagens
 DIRETORIO_MSG = 'mensagens'
 MSG_FORMULARIO_APROVADO = 'formulario_aprovado.txt'
 MSG_FORMULARIO_REPROVADO = 'formulario_reprovado.txt'

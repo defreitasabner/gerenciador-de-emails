@@ -1,6 +1,8 @@
 import os
 import config
 
+#TODO: tornar o gerador de mensagem um classe normal, com método construtor recebendo diretório
+#TODO: Criar um método para verficar quais mensagens estão presentes no diretório mensagem
 class GeradorMensagem:
 
     @staticmethod
@@ -19,13 +21,13 @@ class GeradorMensagem:
 
         caminho = os.path.join(config.DIRETORIO_MSG, arquivo)
 
+        mensagem = ''
+        
         with open(caminho, 'r', encoding='utf-8') as arquivo_txt:
             
-            mensagem = ''
-
             for linha in arquivo_txt:
                 mensagem += linha
 
-            mensagem_tratada = mensagem.replace('$candidato', nome_candidato)
+        mensagem_tratada = mensagem.replace('$candidato', nome_candidato)
 
-            return mensagem_tratada
+        return mensagem_tratada

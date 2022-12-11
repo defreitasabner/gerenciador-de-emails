@@ -1,6 +1,7 @@
 import csv
 from typing import List, Dict
 
+#TODO: Adicionar verificador dos campos presentes na planilha, devem ser sempre os mesmos
 class Planilha:
     
     def __init__(self, caminho_csv: str) -> None:

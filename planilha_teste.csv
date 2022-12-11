@@ -1,0 +1,4 @@
+id	nome	email	status_formulario	status_dinamica	status_entrevista	status_trainee
+1	um	um@email.com	aprovado			
+2	dois	dois@email.com	aprovado			
+3	três	três@email.com	reprovado			

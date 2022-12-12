@@ -1,5 +1,9 @@
+# Caminhos gerais (Paths)
+DIRETORIO_DATA = 'data'
+
 # Caminho para Planilha
-PLANILHA_CONTROLE = 'planilha_teste.csv'
+DIRETORIO_PLANILHAS = 'planilhas'
+PLANILHA_TESTE = 'planilha_teste.csv'
 
 # Caminhos para Mensagens
 DIRETORIO_MSG = 'mensagens'

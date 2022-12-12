@@ -8,7 +8,7 @@ class GeradorMensagem:
     @staticmethod
     def gerar_mensagem(etapa_mensagem: str, status_candidato: str, nome_candidato: str) -> str:
         
-        arquivo = os.path.join(config.DIRETORIO_MSG)
+        arquivo = None
 
         if status_candidato == 'aprovado':
             if etapa_mensagem == 'formulario':
@@ -19,7 +19,7 @@ class GeradorMensagem:
         else:
             raise Exception(f'O candidato {nome_candidato} ainda não foi avaliado nessa etapa!')
 
-        caminho = os.path.join(config.DIRETORIO_MSG, arquivo)
+        caminho = os.path.join(config.DIRETORIO_DATA, config.DIRETORIO_MSG, arquivo)
 
         mensagem = ''
         

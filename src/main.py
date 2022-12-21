@@ -10,7 +10,7 @@ def main():
     # credenciais do email da equipe
     email_minervabots = {
         'username': 'defreitasabner@gmail.com',
-        'password': 'ytidnugcydqtmvdr'
+        'password': ''
     }
 
 

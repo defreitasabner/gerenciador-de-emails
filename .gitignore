@@ -1,3 +1,4 @@
 venv/
 rascunho.py
 *__pycache__/
+*.env

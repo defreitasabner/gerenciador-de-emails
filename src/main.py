@@ -9,7 +9,7 @@ def main():
     load_dotenv()
 
     # informações
-    caminho_csv = 'planilha_teste.csv'
+    caminho_csv = 'data/planilhas/planilha_teste.csv'
     etapa_ps = 'formulario'
 
     # Classes que fazem as coisas

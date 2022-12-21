@@ -4,7 +4,7 @@ from typing import List, Dict
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
 from exception import ErroColunasEsperadas
 
-#TODO: Adicionar verificador dos campos presentes na planilha, devem ser sempre os mesmos
+#TODO: Resolver o problema com nome com acentuação, pois isso gera problema no futuro
 class Planilha:
     
     def __init__(self, caminho_csv: str) -> None:

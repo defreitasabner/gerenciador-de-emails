@@ -1,7 +1,8 @@
 import csv
 from typing import List, Dict
 
-from constantes import LISTA_COLUNAS_ESPERADAS
+from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
+from exception import ErroColunasEsperadas
 
 #TODO: Adicionar verificador dos campos presentes na planilha, devem ser sempre os mesmos
 class Planilha:
@@ -10,7 +11,7 @@ class Planilha:
         """
         Classe responsável por gerenciar os arquivos `.csv`. O método construtor de `Planilha` recebe um caminho (`str`) para um arquivo `.csv` e armazena as informações obtidas no atributo `dados`, na forma de uma lista de dicionários.
         """
-        self.colunas_esperadas: List[str] = LISTA_COLUNAS_ESPERADAS
+        self.colunas_esperadas: List[str] = COLUNAS_ESPERADAS_PLANILHA_PS
         self._dados: List[Dict[str, str]] = self.extrair_dados(caminho_csv)
 
     def extrair_dados(self, caminho_csv: str) -> List[Dict[str, str]]:
@@ -30,9 +31,9 @@ class Planilha:
 
             return dados
         
-        except Exception:
-            
-            raise Exception('Ocorreu um erro ao abrir a planilha...')
+        except ErroColunasEsperadas as erro:
+            # Caso o erro seja do tipo ErroColunasEsperadas, printa uma mensagem com nome do erro
+            print(f'{erro.__class__.__name__}: As colunas do arquivo ".csv" não correspondem as colunas esperadas para esse tipo de Planilha (PS).')
             
     @property
     def dados(self) -> List[Dict[str, str]]:
@@ -53,13 +54,8 @@ class Planilha:
         """
         Método responsável por verificar se todos os dicionários extraídos estão com as chaves correspondentes as colunas esperadas do arquivo `.csv`. Vai retornar erro tanto se planilha estiver sem as colunas apropriadas, quanto se ocorreu algum erro durante a extração de algum dos dicionários.
         """
-        try:
-
-            for dado in dados:
-                if(list(dado.keys()) == self.colunas_esperadas):
-                    print('OK')
-                else:
-                    raise Exception('Erro ')
-        
-        except:
-            raise Exception('Erro')
+        for dado in dados:
+            if(list(dado.keys()) == self.colunas_esperadas):
+                print('OK')
+            else:
+                raise ErroColunasEsperadas()

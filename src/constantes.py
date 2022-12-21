@@ -1,5 +1,5 @@
 # Contastantes da Classe Planilha
-LISTA_COLUNAS_ESPERADAS = [
+COLUNAS_ESPERADAS_PLANILHA_PS = [
     'id',
     'nome',
     'email',

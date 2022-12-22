@@ -1,5 +1,5 @@
 from typing import List, Dict
-import email
+import email.message
 import smtplib
 
 from GeradorMensagem import GeradorMensagem

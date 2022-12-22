@@ -12,9 +12,9 @@ class GeradorMensagem:
         nome_candidato = candidato['nome']
 
         if etapa_ps == 'formulario':
-            if candidato['status_formulario'] == 'aprovado':
+            if candidato[etapa_ps] == 'aprovado':
                 arquivo = config.MSG_FORMULARIO_APROVADO
-            elif candidato['status_formulario'] == 'reprovado':
+            elif candidato[etapa_ps] == 'reprovado':
                 arquivo = config.MSG_FORMULARIO_REPROVADO
         else:
             raise Exception(f'O candidato {nome_candidato} ainda não foi avaliado nessa etapa!')

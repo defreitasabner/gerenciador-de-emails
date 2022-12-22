@@ -4,7 +4,7 @@ import smtplib
 
 from GeradorMensagem import GeradorMensagem
 
-
+#TODO: Adicionar validação de mensagens que serão enviadas
 class GerenciadorEmails:
 
     def __init__(self, email_usuario: str, senha: str) -> None:
@@ -14,9 +14,13 @@ class GerenciadorEmails:
 
     def enviar_emails_ps(self, etapa_ps: str, lista_candidatos: List[Dict[str, str]]) -> None:
 
+        # Gerador de mensagem preparando as mensagens
+        gerador_mensagem = GeradorMensagem()
+        gerador_mensagem.carregar_mensagens_ps(etapa_ps)
+
         # Configurações para enviar o email
         objeto_email = email.message.Message() # objeto email
-        objeto_email['Subject'] = f'[PROCESSO SELETIVO] - RESULTADO {etapa_ps.capitalize()}' # assunto do email
+        objeto_email['Subject'] = f'[PROCESSO SELETIVO] - RESULTADO {etapa_ps.upper()}' # assunto do email
         objeto_email['From'] = self.email_usuario # nosso email
         objeto_email['To'] = None # iterar todos os candidatos na lista de candidatos
         password = self.senha # nossa senha de app do google - ver tutorial na Wiki
@@ -30,7 +34,7 @@ class GerenciadorEmails:
         server.login(objeto_email['From'], password)
         
         for candidato in lista_candidatos:
-            objeto_email.set_payload(GeradorMensagem.gerar_mensagem_ps(etapa_ps, candidato))
+            objeto_email.set_payload(gerador_mensagem.gerar_mensagem_ps(etapa_ps, candidato))
             server.sendmail(objeto_email['From'], candidato['email'], objeto_email.as_string().encode('utf-8'))
             print('Email enviado para' + candidato['nome'])
 
@@ -46,7 +50,7 @@ class GerenciadorEmails:
 
     @email_usuario.setter
     def email_usuario(self, novo_email) -> None:
-        self.email_usuario = novo_email
+        self.__email_usuario = novo_email
 
     @property
     def senha(self) -> str:
@@ -54,4 +58,4 @@ class GerenciadorEmails:
 
     @senha.setter
     def senha(self, nova_senha) -> None:
-        self.senha = nova_senha
+        self.__senha = nova_senha

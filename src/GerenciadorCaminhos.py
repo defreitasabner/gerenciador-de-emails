@@ -3,6 +3,7 @@ from pathlib import Path
 from config import DIRETORIO_DATA, DIRETORIO_PLANILHAS, DIRETORIO_MSG
 from exception import ErroDiretorioDataNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado, ErroDiretorioMensagensNaoEncontrado
 
+#TODO: Criar um método para verficar quais mensagens estão presentes no diretório mensagem
 class GerenciadorCaminhos:
     """
     GerenciadorCaminhos
@@ -42,7 +43,7 @@ class GerenciadorCaminhos:
 
     @dir_data.setter
     def dir_data(self, novo_caminho):
-        self.dir_data = Path(novo_caminho)
+        self.__dir_data = Path(novo_caminho)
     
     @property
     def dir_planilhas(self):
@@ -50,7 +51,7 @@ class GerenciadorCaminhos:
 
     @dir_planilhas.setter
     def dir_planilhas(self, novo_caminho):
-        self.dir_planilhas = Path(novo_caminho)
+        self.__dir_planilhas = Path(novo_caminho)
     
     @property
     def dir_mensagens(self):
@@ -58,4 +59,4 @@ class GerenciadorCaminhos:
 
     @dir_mensagens.setter
     def dir_mensagens(self, novo_caminho):
-        self.dir_mensagens = Path(novo_caminho)
+        self.__dir_mensagens = Path(novo_caminho)

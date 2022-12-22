@@ -5,8 +5,8 @@ from config import DIRETORIO_DATA, DIRETORIO_MSG
 from MensagemPS import MensagemPS
 from GerenciadorCaminhos import GerenciadorCaminhos
 
-#TODO: tornar o gerador de mensagem um classe normal, com método construtor recebendo diretório
-#TODO: Criar um método para verficar quais mensagens estão presentes no diretório mensagem
+#TODO: Tornar método `carregar_mensagem()` privado
+#TODO: criar validação de entrada do parâmetro etapa_ps com as colunas
 class GeradorMensagem:
 
     def __init__(self) -> None:

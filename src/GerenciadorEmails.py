@@ -12,7 +12,7 @@ class GerenciadorEmails:
         self.__senha = senha
 
 
-    def enviar_emails(self, etapa_ps: str, lista_candidatos: List[Dict[str, str]]) -> None:
+    def enviar_emails_ps(self, etapa_ps: str, lista_candidatos: List[Dict[str, str]]) -> None:
 
         # Configurações para enviar o email
         objeto_email = email.message.Message() # objeto email

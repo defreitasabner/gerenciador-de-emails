@@ -17,7 +17,7 @@ def main():
     gerenciador_emails = GerenciadorEmails(os.getenv('USUARIO'), os.getenv('SENHA'))
     
     # envia os emails
-    gerenciador_emails.enviar_emails(etapa_ps, planilha.dados)
+    gerenciador_emails.enviar_emails_ps(etapa_ps, planilha.dados)
 
 
 

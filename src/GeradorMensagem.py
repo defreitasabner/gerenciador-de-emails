@@ -1,11 +1,9 @@
-from typing import List, Dict, Type, Union
+from typing import Dict, Union
 import os
 
 from config import DIRETORIO_DATA, DIRETORIO_MSG
 from MensagemPS import MensagemPS
-from GerenciadorCaminhos import GerenciadorCaminhos
 
-#TODO: Tornar método `carregar_mensagem()` privado
 #TODO: criar validação de entrada do parâmetro etapa_ps com as colunas
 class GeradorMensagem:
 
@@ -13,7 +11,12 @@ class GeradorMensagem:
         self.__mensagem_carregada: Union[MensagemPS, None] = None
 
 
-    def carregar_mensagem(self, caminho: str) -> str:
+    def __carregar_mensagem(self, caminho: str) -> str:
+        """
+        Método privado (Não deve ser chamado diretamente)
+        --- 
+        Responsável por extrair o conteúdo de uma única mensagem. É chamado dentro do método `carregar_mensagens_ps()`.
+        """
 
         msg = ''
 
@@ -24,13 +27,16 @@ class GeradorMensagem:
 
         return msg
 
-    def carregar_mensagens_ps(self, etapa_ps: str) -> None:
+    def carregar_msg_resultado_etapa_ps(self, etapa_ps: str) -> None:
+        """
+        Método responsável por receber uma `etapa` do processo seletivo e carregar as mensagens de `aprovado` e `reprovaado` referentes àquela etapa. A mensagem carregada é guardada dentro do atributo privado `mensagem_carregada` da classe `GeradorMensagem`.
+        """
         
         caminho_msg_aprovado = os.path.join(DIRETORIO_DATA, DIRETORIO_MSG, f'{etapa_ps}_aprovado.txt')
         caminho_msg_reprovado = os.path.join(DIRETORIO_DATA, DIRETORIO_MSG, f'{etapa_ps}_reprovado.txt')
 
-        msg_aprovado = self.carregar_mensagem(caminho_msg_aprovado)
-        msg_reprovado = self.carregar_mensagem(caminho_msg_reprovado)
+        msg_aprovado = self.__carregar_mensagem(caminho_msg_aprovado)
+        msg_reprovado = self.__carregar_mensagem(caminho_msg_reprovado)
 
         self.mensagem_carregada = MensagemPS(msg_aprovado, msg_reprovado)
 

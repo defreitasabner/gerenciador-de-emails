@@ -16,7 +16,7 @@ class GerenciadorEmails:
 
         # Gerador de mensagem preparando as mensagens
         gerador_mensagem = GeradorMensagem()
-        gerador_mensagem.carregar_mensagens_ps(etapa_ps)
+        gerador_mensagem.carregar_msg_resultado_etapa_ps(etapa_ps)
 
         # Configurações para enviar o email
         objeto_email = email.message.Message() # objeto email

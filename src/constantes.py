@@ -8,3 +8,10 @@ COLUNAS_ESPERADAS_PLANILHA_PS = [
     'entrevista',
     'trainee'
 ]
+
+# Constantes da Classe InterfaceGrafica
+OPCOES_APARENCIA = [
+    "Dark",
+    "Light",
+    "System"
+]

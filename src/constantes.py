@@ -15,3 +15,6 @@ OPCOES_APARENCIA = [
     "Light",
     "System"
 ]
+OPCOES_TEMA = [
+    "dark-blue"
+]

@@ -2,7 +2,7 @@ import tkinter
 import customtkinter
 
 from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL, LARGURA_JANELA_PRINCIPAL, ALTURA_JANELA_PRINCIPAL
-from constantes import OPCOES_APARENCIA
+from constantes import OPCOES_APARENCIA, OPCOES_TEMA
 
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
@@ -16,40 +16,40 @@ class App(customtkinter.CTk):
         self.title("MinervaBots - Gerenciador de Emails")
         #self.geometry(f"{LARGURA_JANELA_PRINCIPAL}x{ALTURA_JANELA_PRINCIPAL}")
 
-        # Criando elementos do Menu Lateral
-        self.menu_lateral = customtkinter.CTkFrame(
+        # Criando elementos do Menu Principal
+        self.menu_principal = customtkinter.CTkFrame(
             self, 
             width=200, 
             corner_radius=0
         )
         self.email_label = customtkinter.CTkLabel(
-            self.menu_lateral, 
+            self.menu_principal, 
             text="E-mail", 
             font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.botao_login = customtkinter.CTkButton(
-            self.menu_lateral, 
+            self.menu_principal, 
             text = 'Login\n(remetente)',
-            command=self.janela_configuracao
+            command=self.login_email_remetente
         )
         self.planilhas_label = customtkinter.CTkLabel(
-            self.menu_lateral, 
+            self.menu_principal, 
             text="Planilhas", 
             font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.botao_carregar_planilha_ps = customtkinter.CTkButton(
-            self.menu_lateral, 
+            self.menu_principal, 
             text = 'Carregar Planilha PS', 
             command=self.abrir_planilha_ps
         )
         self.botao_carregar_planilha_180 = customtkinter.CTkButton(
-            self.menu_lateral, 
+            self.menu_principal, 
             text = 'Carregar Planilha 180', 
             command=self.sidebar_button_event
         )
 
-        # Posicionando elementos no Menu Lateral
-        self.menu_lateral.grid(row=0, column=0)
+        # Posicionando elementos no Menu Principal
+        self.menu_principal.grid(row=0, column=0)
         self.email_label.grid(row=0, column=0, padx=20, pady=(20, 10))
         self.botao_login.grid(row=1, column=0, padx=20, pady=10)
         self.planilhas_label.grid(row=2, column=0, padx=20, pady=(20, 10))
@@ -98,22 +98,32 @@ class App(customtkinter.CTk):
             values= OPCOES_APARENCIA,
             command=self.evento_alterar_aparencia
         )
+        self.tema_label = customtkinter.CTkLabel(self.menu_configuracoes, 
+            text="Tema:",
+            anchor="w"
+        )
+        self.tema_opcoes = customtkinter.CTkOptionMenu(self.menu_configuracoes, 
+            values= OPCOES_TEMA,
+            command=self.evento_alterar_tema
+        )
 
         # Posicionando elementos no Menu de Configuração
         self.menu_configuracoes.grid(row=0, column=2)
-        self.menu_configuracoes_label.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.menu_configuracoes_label.grid(row=0, column=0, columnspan=2, padx=20, pady=(20, 10))
         self.modo_aparecencia_label.grid(row=1, column=0, padx=20, pady=(10, 0))
-        self.modo_aparencia_opcoes.grid(row=2, column=0, padx=20, pady=(10, 10))
+        self.modo_aparencia_opcoes.grid(row=1, column=1, padx=20, pady=(10, 10))
+        self.tema_label.grid(row=2, column=0, padx=10, pady=(10, 0))
+        self.tema_opcoes.grid(row=2, column=1, padx=10, pady=(10, 10))
 
     # Janela de configuração que abre quando clica no botão de configuração
-    def janela_configuracao(self):
-        janela_config = customtkinter.CTkToplevel(self)
-        janela_config.geometry("400x200")
-        janela_config.wm_transient(self)
+    def login_email_remetente(self):
+        janela_login = customtkinter.CTkToplevel(self)
+        janela_login.geometry("400x200")
+        janela_login.wm_transient(self)
 
-        janela_config.title('Configuração')
+        janela_login.title('Configuração')
 
-        label = customtkinter.CTkLabel(janela_config, text="CTkToplevel window")
+        label = customtkinter.CTkLabel(janela_login, text="CTkToplevel window")
         label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
 
     # Comando responsável pro passar a planilha do processo seletivo
@@ -128,8 +138,11 @@ class App(customtkinter.CTk):
     def sidebar_button_event(self):
         print("Cliquei num botão da sidebar")
 
-    def evento_alterar_aparencia(self, nova_aparencia: str):
+    def evento_alterar_aparencia(self, nova_aparencia: str) -> None:
         customtkinter.set_appearance_mode(nova_aparencia)
+
+    def evento_alterar_tema(self, novo_tema: str) -> None:
+        customtkinter.set_default_color_theme(novo_tema)
 
 if __name__ == "__main__":
     app = App()

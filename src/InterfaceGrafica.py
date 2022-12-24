@@ -22,33 +22,39 @@ class App(customtkinter.CTk):
             width=200, 
             corner_radius=0
         )
-        self.logo_label = customtkinter.CTkLabel(
+        self.email_label = customtkinter.CTkLabel(
             self.menu_lateral, 
-            text="Tipo de Rotina", 
+            text="E-mail", 
             font=customtkinter.CTkFont(size=20, weight="bold")
         )
-        self.sidebar_button_1 = customtkinter.CTkButton(
+        self.botao_login = customtkinter.CTkButton(
             self.menu_lateral, 
-            text = 'Login do e-mail',
+            text = 'Login\n(remetente)',
             command=self.janela_configuracao
         )
-        self.sidebar_button_2 = customtkinter.CTkButton(
+        self.planilhas_label = customtkinter.CTkLabel(
             self.menu_lateral, 
-            text = 'Abrir PlanilhaPS', 
+            text="Planilhas", 
+            font=customtkinter.CTkFont(size=20, weight="bold")
+        )
+        self.botao_carregar_planilha_ps = customtkinter.CTkButton(
+            self.menu_lateral, 
+            text = 'Carregar Planilha PS', 
             command=self.abrir_planilha_ps
         )
-        self.sidebar_button_3 = customtkinter.CTkButton(
+        self.botao_carregar_planilha_180 = customtkinter.CTkButton(
             self.menu_lateral, 
-            text = 'Abrir Planilha180', 
+            text = 'Carregar Planilha 180', 
             command=self.sidebar_button_event
         )
 
         # Posicionando elementos no Menu Lateral
         self.menu_lateral.grid(row=0, column=0)
-        self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
-        self.sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
-        self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
-        self.sidebar_button_3.grid(row=3, column=0, padx=20, pady=10)
+        self.email_label.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.botao_login.grid(row=1, column=0, padx=20, pady=10)
+        self.planilhas_label.grid(row=2, column=0, padx=20, pady=(20, 10))
+        self.botao_carregar_planilha_ps.grid(row=3, column=0, padx=20, pady=10)
+        self.botao_carregar_planilha_180.grid(row=4, column=0, padx=20, pady=10)
 
         # Criando elementos na Seção Principal
         self.principal = customtkinter.CTkFrame(

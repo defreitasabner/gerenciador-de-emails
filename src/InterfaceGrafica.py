@@ -17,12 +17,31 @@ class App(customtkinter.CTk):
         #self.geometry(f"{LARGURA_JANELA_PRINCIPAL}x{ALTURA_JANELA_PRINCIPAL}")
 
         # Criando elementos do Menu Lateral
-        self.menu_lateral = customtkinter.CTkFrame(self, width=200, corner_radius=0)
-        self.logo_label = customtkinter.CTkLabel(self.menu_lateral, text="Tipo de Rotina", font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.sidebar_button_1 = customtkinter.CTkButton(self.menu_lateral, text = 'Login do e-mail',command=self.janela_configuracao)
-        self.sidebar_button_2 = customtkinter.CTkButton(self.menu_lateral, text = 'Abrir PlanilhaPS', command=self.abrir_planilha_ps)
-        self.sidebar_button_3 = customtkinter.CTkButton(self.menu_lateral, text = 'Abri Planilha180', command=self.sidebar_button_event)
-
+        self.menu_lateral = customtkinter.CTkFrame(
+            self, 
+            width=200, 
+            corner_radius=0
+        )
+        self.logo_label = customtkinter.CTkLabel(
+            self.menu_lateral, 
+            text="Tipo de Rotina", 
+            font=customtkinter.CTkFont(size=20, weight="bold")
+        )
+        self.sidebar_button_1 = customtkinter.CTkButton(
+            self.menu_lateral, 
+            text = 'Login do e-mail',
+            command=self.janela_configuracao
+        )
+        self.sidebar_button_2 = customtkinter.CTkButton(
+            self.menu_lateral, 
+            text = 'Abrir PlanilhaPS', 
+            command=self.abrir_planilha_ps
+        )
+        self.sidebar_button_3 = customtkinter.CTkButton(
+            self.menu_lateral, 
+            text = 'Abrir Planilha180', 
+            command=self.sidebar_button_event
+        )
 
         # Posicionando elementos no Menu Lateral
         self.menu_lateral.grid(row=0, column=0)
@@ -31,9 +50,35 @@ class App(customtkinter.CTk):
         self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
         self.sidebar_button_3.grid(row=3, column=0, padx=20, pady=10)
 
+        # Criando elementos na Seção Principal
+        self.principal = customtkinter.CTkFrame(
+            self,
+            width=200
+        )
+        self.output_sistema = customtkinter.CTkTextbox(
+            self.principal,
+            state="disabled"
+        )
+        self.container_input = customtkinter.CTkFrame(
+            self.principal
+        )
+        self.input_usuario = customtkinter.CTkEntry(
+            self.container_input,
+            placeholder_text="Digite seus comandos aqui"
+        )
+        self.botao_input_usuario = customtkinter.CTkButton(
+            self.container_input,
+            text='Enviar'
+        )
+        # Posicionando elementos na Principal
+        self.principal.grid(row=0, column=1)
+        self.output_sistema.grid(row=0, column=1)
+        self.container_input.grid(row=1, column=1)
+        self.input_usuario.grid(row=0, column=0)
+        self.botao_input_usuario.grid(row=0, column=1)
 
         # Criando elementos do Menu de configuração
-        self.menu_configuracoes = customtkinter.CTkFrame(self, width=140)
+        self.menu_configuracoes = customtkinter.CTkFrame(self, width=200)
         self.menu_configuracoes_label = customtkinter.CTkLabel(
             self.menu_configuracoes, 
             text="Configurações Gerais",
@@ -49,10 +94,10 @@ class App(customtkinter.CTk):
         )
 
         # Posicionando elementos no Menu de Configuração
-        self.menu_configuracoes.grid(row=0, column=1)
+        self.menu_configuracoes.grid(row=0, column=2)
         self.menu_configuracoes_label.grid(row=0, column=0, padx=20, pady=(20, 10))
-        self.modo_aparecencia_label.grid(row=5, column=0, padx=20, pady=(10, 0))
-        self.modo_aparencia_opcoes.grid(row=6, column=0, padx=20, pady=(10, 10))
+        self.modo_aparecencia_label.grid(row=1, column=0, padx=20, pady=(10, 0))
+        self.modo_aparencia_opcoes.grid(row=2, column=0, padx=20, pady=(10, 10))
 
     # Janela de configuração que abre quando clica no botão de configuração
     def janela_configuracao(self):

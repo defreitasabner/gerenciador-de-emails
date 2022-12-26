@@ -18,24 +18,18 @@ class Planilha:
 
     def extrair_dados(self, caminho_csv: str) -> Union[ List[Dict[str, str]], None ]:
 
-        try:
+        dados = []
 
-            dados = []
-
-            with open(caminho_csv, 'r', encoding='utf-8') as planilha:
+        with open(caminho_csv, 'r', encoding='utf-8') as planilha:
                 
-                dados_planilha = csv.DictReader(planilha, delimiter=',', skipinitialspace=True)
+            dados_planilha = csv.DictReader(planilha, delimiter=',', skipinitialspace=True)
                 
-                for dado in dados_planilha:
-                    dados.append(dado)
+            for dado in dados_planilha:
+                dados.append(dado)
 
-            self.validar_colunas(dados)
+        self.validar_colunas(dados)
 
-            return dados
-        
-        except ErroColunasEsperadas as erro:
-            # Caso o erro seja do tipo ErroColunasEsperadas, printa uma mensagem com nome do erro
-            print(f'{erro.__class__.__name__}: As colunas do arquivo ".csv" não correspondem as colunas esperadas para esse tipo de Planilha (PS).')
+        return dados
         
     def validar_colunas(self, dados: List[Dict[str, str]]) -> None:
         """
@@ -45,7 +39,7 @@ class Planilha:
             if(list(dado.keys()) == self.colunas_esperadas):
                 print('OK')
             else:
-                raise ErroColunasEsperadas()
+                raise ErroColunasEsperadas('As colunas da planilha carregada não correspondem às esperadas pelo tipo Planilha PS.')
 
     """
     Métodos Getters e Setters

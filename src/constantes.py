@@ -6,6 +6,7 @@ COLUNAS_ESPERADAS_PLANILHA_PS = [
     'formulario',
     'dinamica',
     'entrevista',
+    'capacitacao',
     'trainee'
 ]
 

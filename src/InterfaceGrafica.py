@@ -3,19 +3,14 @@ import customtkinter
 
 from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL, LARGURA_JANELA_PRINCIPAL, ALTURA_JANELA_PRINCIPAL
 from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS, COLUNAS_ESPERADAS_PLANILHA_PS
-from Planilha import Planilha
 
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
 
-class App(customtkinter.CTk):
+class InterfaceGrafica(customtkinter.CTk):
 
     def __init__(self):
         super().__init__()
-
-        # Atributos Funcionais
-        self.planilha = None
-        self.mensagens = None
 
         # Configurações da Janela
         self.title("MinervaBots - Gerenciador de Emails")
@@ -45,12 +40,12 @@ class App(customtkinter.CTk):
         self.botao_carregar_planilha_ps = customtkinter.CTkButton(
             self.menu, 
             text = 'Carregar Planilha PS', 
-            command=self.abrir_planilha_ps
+            command=self.carregar_planilha_ps
         )
         self.botao_carregar_planilha_180 = customtkinter.CTkButton(
             self.menu, 
             text = 'Carregar Planilha 180', 
-            command=self.abrir_planilha_180
+            command=self.carregar_planilha_180
         )
 
         # Posicionando elementos no Menu Principal
@@ -149,26 +144,7 @@ class App(customtkinter.CTk):
         self.output_sistema.tag_config('sucesso', foreground='green')
         self.output_sistema.tag_config('aviso', foreground='yellow')
 
-        # Printando mensagem de erro
-        self.mensagem_inicial()
-
-    def mensagem_inicial(self):
-        self.exibir_mensagem_sistema('Bem-vindo(a) ao Gerenciador de E-mails!')
-        self.exibir_mensagem_sistema('Para Começar, execute os seguintes passos:')
-        self.exibir_mensagem_sistema('1 - Verifique se o e-mail está configurado (e-mail e senha)')
-        self.exibir_mensagem_sistema('2 - Carregue uma Planilha Padronizada')
-        self.exibir_mensagem_sistema('====================================================================')
-        self.exibir_mensagem_sistema('Planilha de PS (colunas obrigatórias):', 'aviso')
-        for coluna in COLUNAS_ESPERADAS_PLANILHA_PS:
-            if COLUNAS_ESPERADAS_PLANILHA_PS.index(coluna) != len(COLUNAS_ESPERADAS_PLANILHA_PS) - 1:
-                self.exibir_mensagem_sistema(f'{coluna} | ', 'aviso', pula_linha= False)
-            else:
-                self.exibir_mensagem_sistema(f'{coluna}', 'aviso')
-        self.exibir_mensagem_sistema('Obs. 1: Utilize apenas "aprovado" ou "reprovado" para indicar a situação do candidato.')
-        self.exibir_mensagem_sistema('Obs. 2: Células de etapas ou candidatos não-avaliados devem permanecer vazias.')
-        self.exibir_mensagem_sistema('====================================================================')
-
-    def exibir_mensagem_sistema(self, mensagem: str, tag: str = 'padrao', pula_linha: bool = True) -> None:
+    def sistema_msg_padrao(self, mensagem: str, tag: str = 'padrao', pula_linha: bool = True) -> None:
         self.output_sistema.configure(state='normal')
         if pula_linha:
             caracter_especial = '\n'
@@ -180,6 +156,17 @@ class App(customtkinter.CTk):
             self.output_sistema.insert('end', f"{mensagem}{caracter_especial}", tag)
         self.output_sistema.see(tkinter.END) # Auto Scroll da Caixa de texto
         self.output_sistema.configure(state='disabled')
+
+    def sistema_msg_sucesso(self, mensagem: str) -> None:
+        self.sistema_msg_padrao(mensagem, 'sucesso')
+
+    def sistema_msg_alerta(self, mensagem: str) -> None:
+        self.sistema_msg_padrao(mensagem, tag='aviso')
+
+    def sistema_msg_erro(self, erro: Exception, procedimento: str) -> None:
+        msg_erro = str(erro)
+        self.sistema_msg_padrao(f'Ocorreu um erro ao tentar {procedimento}:', tag='erro')
+        self.sistema_msg_padrao(msg_erro, tag='erro')
     
     # Janela de configuração que abre quando clica no botão de configuração
     def login_email_remetente(self):
@@ -193,22 +180,11 @@ class App(customtkinter.CTk):
         label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
 
     # Comando responsável pro passar a planilha do processo seletivo
-    def abrir_planilha_ps(self):
-        try:
-            caminho_arquivo_csv = tkinter.filedialog.askopenfilename(
-                initialdir = './data/planilhas/',
-                title = 'Selecione a Planilha de Processo Seletivo (.csv)',
-                filetypes = (('CSV Files', '*.csv'),)
-            )
-            self.planilha = Planilha(caminho_arquivo_csv)
-            self.exibir_mensagem_sistema('Planilha PS carregada com sucesso!', 'sucesso')
-        except Exception as erro:
-            self.exibir_mensagem_sistema('Erro ao tentar carregar Planilha de PS:', 'erro')
-            self.exibir_mensagem_sistema(str(erro), 'erro')
-            self.exibir_mensagem_sistema('Padronize a planilha com as colunas esperadas (escritas da mesma forma e na mesma ordem) e tente novamente.', 'aviso')
+    def carregar_planilha_ps(self):
+        self.sistema_msg_padrao('Abrindo Planilha de PS...')
 
-    def abrir_planilha_180(self):
-        self.exibir_mensagem_sistema('Abrindo Planilha de 180...')
+    def carregar_planilha_180(self):
+        self.sistema_msg_padrao('Abrindo Planilha de 180...')
 
     def evento_alterar_aparencia(self, nova_aparencia: str) -> None:
         customtkinter.set_appearance_mode(nova_aparencia)
@@ -220,11 +196,11 @@ class App(customtkinter.CTk):
         print(botao_clicado)
 
     def evento_verificar_mensagens(self):
-        self.exibir_mensagem_sistema('Verificando Mensagens...')
+        self.sistema_msg_padrao('Verificando Mensagens...')
 
     def evento_enviar_emails(self):
-        self.exibir_mensagem_sistema('Enviando emails...')
+        self.sistema_msg_padrao('Enviando emails...')
 
 if __name__ == "__main__":
-    app = App()
+    app = InterfaceGrafica()
     app.mainloop()

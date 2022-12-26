@@ -9,6 +9,15 @@ COLUNAS_ESPERADAS_PLANILHA_PS = [
     'trainee'
 ]
 
+# Constantes relativas ao Processo Seletivo
+ETAPAS_PS = [
+    'Formulário',
+    'Dinâmica',
+    'Entrevista',
+    'Capacitação',
+    'Trainee'
+]
+
 # Constantes da Classe InterfaceGrafica
 OPCOES_APARENCIA = [
     "Dark",

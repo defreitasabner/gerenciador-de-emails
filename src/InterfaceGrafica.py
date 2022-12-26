@@ -144,6 +144,12 @@ class App(customtkinter.CTk):
         self.tema_label.grid(row=2, column=0, padx=5, pady=(10, 0))
         self.tema_opcoes.grid(row=2, column=1, padx=5, pady=(10, 10))
 
+        # Criando tags para os tipos de mensagem que o sistema pode exibir
+        self.output_sistema.tag_config('erro', foreground='red')
+        self.output_sistema.tag_config('sucesso', foreground='green')
+        self.output_sistema.tag_config('aviso', foreground='yellow')
+
+        # Printando mensagem de erro
         self.mensagem_inicial()
 
     def mensagem_inicial(self):
@@ -152,23 +158,27 @@ class App(customtkinter.CTk):
         self.exibir_mensagem_sistema('1 - Verifique se o e-mail está configurado (e-mail e senha)')
         self.exibir_mensagem_sistema('2 - Carregue uma Planilha Padronizada')
         self.exibir_mensagem_sistema('====================================================================')
-        self.exibir_mensagem_sistema('Planilha de PS (colunas obrigatórias):')
+        self.exibir_mensagem_sistema('Planilha de PS (colunas obrigatórias):', 'aviso')
         for coluna in COLUNAS_ESPERADAS_PLANILHA_PS:
             if COLUNAS_ESPERADAS_PLANILHA_PS.index(coluna) != len(COLUNAS_ESPERADAS_PLANILHA_PS) - 1:
-                self.exibir_mensagem_sistema(f'{coluna} | ', pula_linha= False)
+                self.exibir_mensagem_sistema(f'{coluna} | ', 'aviso', pula_linha= False)
             else:
-                self.exibir_mensagem_sistema(f'{coluna}')
+                self.exibir_mensagem_sistema(f'{coluna}', 'aviso')
         self.exibir_mensagem_sistema('Obs. 1: Utilize apenas "aprovado" ou "reprovado" para indicar a situação do candidato.')
         self.exibir_mensagem_sistema('Obs. 2: Células de etapas ou candidatos não-avaliados devem permanecer vazias.')
         self.exibir_mensagem_sistema('====================================================================')
 
-    def exibir_mensagem_sistema(self, mensagem: str, pula_linha: bool = True) -> None:
+    def exibir_mensagem_sistema(self, mensagem: str, tag: str = 'padrao', pula_linha: bool = True) -> None:
         self.output_sistema.configure(state='normal')
         if pula_linha:
-            self.output_sistema.insert('end', f"{mensagem}\n")
+            caracter_especial = '\n'
         else:
-            self.output_sistema.insert('end', f"{mensagem} ")
-        self.output_sistema.see(tkinter.END)
+            caracter_especial = ''
+        if tag == 'padrao':
+            self.output_sistema.insert('end', f"{mensagem}{caracter_especial}")
+        else:
+            self.output_sistema.insert('end', f"{mensagem}{caracter_especial}", tag)
+        self.output_sistema.see(tkinter.END) # Auto Scroll da Caixa de texto
         self.output_sistema.configure(state='disabled')
     
     # Janela de configuração que abre quando clica no botão de configuração
@@ -191,11 +201,11 @@ class App(customtkinter.CTk):
                 filetypes = (('CSV Files', '*.csv'),)
             )
             self.planilha = Planilha(caminho_arquivo_csv)
-            self.exibir_mensagem_sistema('Planilha PS carregada com sucesso!')
+            self.exibir_mensagem_sistema('Planilha PS carregada com sucesso!', 'sucesso')
         except Exception as erro:
-            self.exibir_mensagem_sistema('Erro ao tentar carregar Planilha de PS:')
-            self.exibir_mensagem_sistema(str(erro))
-            self.exibir_mensagem_sistema('Padronize a planilha com as colunas esperadas e tente novamente.')
+            self.exibir_mensagem_sistema('Erro ao tentar carregar Planilha de PS:', 'erro')
+            self.exibir_mensagem_sistema(str(erro), 'erro')
+            self.exibir_mensagem_sistema('Padronize a planilha com as colunas esperadas (escritas da mesma forma e na mesma ordem) e tente novamente.', 'aviso')
 
     def abrir_planilha_180(self):
         self.exibir_mensagem_sistema('Abrindo Planilha de 180...')

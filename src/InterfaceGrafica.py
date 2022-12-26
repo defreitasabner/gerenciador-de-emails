@@ -8,7 +8,9 @@ customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
 
 class InterfaceGrafica(customtkinter.CTk):
-
+    """
+    Classe responsável pela estruturação da interface gráfica do programa. Aqui são configuradas todas as widgets, bem como os comandos que elas irão disparar. Entretanto, a lógica por trás do funcionamento dessas widgets deve ser implementada em `App`, sobrescrevendo as funções herdadas por `InterfaceGrafica`.
+    """
     def __init__(self):
         super().__init__()
 
@@ -145,6 +147,9 @@ class InterfaceGrafica(customtkinter.CTk):
         self.output_sistema.tag_config('aviso', foreground='yellow')
 
     def sistema_msg_padrao(self, mensagem: str, tag: str = 'padrao', pula_linha: bool = True) -> None:
+        """
+        Exibe uma mensagem padrão (branca) no console de saída do sistema. Pode ser modificada mudando o valor da propriedade `tag` de `padrao` para `aviso`, `erro` ou `sucesso`. Evite usar outros valores para `tag`, opte por usar as funções específicas: `sistema_msg_erro()`, `sistema_msg_alerta()` e `sistema_msg_sucesso()`. Por padrão, irá pular linha após exibir a mensagem, mas pode ser aterado através da propriedade `pula_linha`.
+        """
         self.output_sistema.configure(state='normal')
         if pula_linha:
             caracter_especial = '\n'
@@ -158,12 +163,21 @@ class InterfaceGrafica(customtkinter.CTk):
         self.output_sistema.configure(state='disabled')
 
     def sistema_msg_sucesso(self, mensagem: str) -> None:
+        """
+        Exibe uma mensagem de sucesso (verde) no console de saída do sistema. Use esse tipo de mensagem para deixar o usuário ciente de que o procedimento foi concluído com sucesso.
+        """
         self.sistema_msg_padrao(mensagem, 'sucesso')
 
     def sistema_msg_alerta(self, mensagem: str) -> None:
+        """
+        Exibe uma mensagem de alerta (amarela) no console de saída do sistema. Use esse tipo de mensagem para chamar a atenção do usuário.
+        """
         self.sistema_msg_padrao(mensagem, tag='aviso')
 
     def sistema_msg_erro(self, erro: Exception, procedimento: str) -> None:
+        """
+        Exibe uma mensagem de erro (vermelha) no console de saída do sistema. O parâmetro `erro` recebe o tipo de erro, vindo de um bloco `except` e trata para a mensagem ser exibida. O parâmetro `procedimento` deve receber uma indicação de que procedimento o usuário estava tentando fazer quando ocorreu o erro.
+        """
         msg_erro = str(erro)
         self.sistema_msg_padrao(f'Ocorreu um erro ao tentar {procedimento}:', tag='erro')
         self.sistema_msg_padrao(msg_erro, tag='erro')

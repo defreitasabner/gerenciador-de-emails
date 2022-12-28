@@ -3,7 +3,7 @@ from typing import Union
 class Candidato:
 
     def __init__(self,
-    id: int,
+    id: str,
     nome: str, 
     email: str, 
     formulario: Union[str, None],
@@ -17,7 +17,7 @@ class Candidato:
         Classe responsável por representar cada um dos candidatos do processo seletivo. Os primeiros atributos representam informações dos candidatos (`id`, `nome` e `email`) e os demais representam o status do candidato em cada etapa (`formulario`, `dinamica`, `entrevista`, `capacitacao` e `trainee`). Caso o candidato ainda não tenha sido avaliado na etapa, espera-se receber `None`. Caso ele tenha sido avaliado, espera-se uma string com valor `aprovado` ou `reprovado`.
         """
 
-        self.__id: int = id
+        self.__id: str = id
         self.__nome: str = nome
         self.__email: str = email
         self.__formulario: Union[str, None] = formulario
@@ -33,7 +33,7 @@ class Candidato:
     """
 
     @property
-    def id(self) -> int:
+    def id(self) -> str:
         return self.__id
 
     @property

@@ -2,6 +2,7 @@ from tkinter import filedialog
 
 from InterfaceGrafica import InterfaceGrafica
 from Planilha import Planilha
+from Candidatos import Candidatos
 from GerenciadorCaminhos import GerenciadorCaminhos
 
 from exception import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
@@ -19,6 +20,7 @@ class App(InterfaceGrafica):
 
         # Atributos referentes as demais classes
         self.planilha = None
+        self.candidatos = None
         self.gerenciador_mensagem = None
         self.gerenciador_email = None
         self.gerenciador_caminhos = GerenciadorCaminhos()
@@ -59,6 +61,8 @@ class App(InterfaceGrafica):
             )
             self.planilha = Planilha(caminho_arquivo_csv)
             self.sistema_msg_sucesso('Planilha PS carregada com sucesso!')
+            self.candidatos = Candidatos(self.planilha.dados)
+            self.sistema_msg_sucesso('Dados dos Candidatos extraídos com sucesso!')
         except ErroColunasEsperadas as erro:
             self.sistema_msg_erro(erro, 'carregar Planilha de PS')
         except Exception as erro_inesperado:

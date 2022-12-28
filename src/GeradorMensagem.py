@@ -1,7 +1,7 @@
 from typing import Dict, Union
 import os
 
-from config import DIRETORIO_DATA, DIRETORIO_MSG
+from caminhos import DIRETORIO_MSG
 from MensagemPS import MensagemPS
 
 #TODO: criar validação de entrada do parâmetro etapa_ps com as colunas
@@ -32,8 +32,8 @@ class GeradorMensagem:
         Método responsável por receber uma `etapa` do processo seletivo e carregar as mensagens de `aprovado` e `reprovaado` referentes àquela etapa. A mensagem carregada é guardada dentro do atributo privado `mensagem_carregada` da classe `GeradorMensagem`.
         """
         
-        caminho_msg_aprovado = os.path.join(DIRETORIO_DATA, DIRETORIO_MSG, f'{etapa_ps}_aprovado.txt')
-        caminho_msg_reprovado = os.path.join(DIRETORIO_DATA, DIRETORIO_MSG, f'{etapa_ps}_reprovado.txt')
+        caminho_msg_aprovado = os.path.join(DIRETORIO_MSG, f'{etapa_ps}_aprovado.txt')
+        caminho_msg_reprovado = os.path.join(DIRETORIO_MSG, f'{etapa_ps}_reprovado.txt')
 
         msg_aprovado = self.__carregar_mensagem(caminho_msg_aprovado)
         msg_reprovado = self.__carregar_mensagem(caminho_msg_reprovado)

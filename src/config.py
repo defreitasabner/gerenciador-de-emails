@@ -1,23 +1,3 @@
-# Caminhos gerais (Paths)
-DIRETORIO_DATA = 'data'
-
-# Caminho para Planilha
-DIRETORIO_PLANILHAS = 'planilhas'
-PLANILHA_TESTE = 'planilha_teste.csv'
-
-# Caminhos para Mensagens
-DIRETORIO_MSG = 'mensagens'
-MSG_FORMULARIO_APROVADO = 'formulario_aprovado.txt'
-MSG_FORMULARIO_REPROVADO = 'formulario_reprovado.txt'
-MSG_DINAMICA_APROVADO = None
-MSG_DINAMICA_REPROVADO = None
-MSG_ENTREVISTA_APROVADO = None
-MSG_ENTREVISTA_REPROVADO = None
-MSG_CAPACITACAO_APROVADO = None
-MSG_CAPACITACAO_REPROVADO = None
-MSG_TRAINEE_APROVADO = None
-MSG_TRAINEE_REPROVADO = None
-
 # Configurações da Interface Gráfica
 APARENCIA_PRINCIPAL = 'Dark'
 TEMA_PRINCIPAL = 'dark-blue'

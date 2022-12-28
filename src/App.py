@@ -35,6 +35,7 @@ class App(InterfaceGrafica):
         # Exibe a mensagem inicial do programa
         self.mensagem_inicial()
         self.verificar_diretorios()
+        self.verificar_arquivos_mensagens()
 
     def mensagem_inicial(self) -> None:
         self.sistema_msg_padrao('Bem-vindo(a) ao Gerenciador de E-mails!')
@@ -58,6 +59,13 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Todos os diretórios necessários foram encontrados.')
         except ErroDiretorioDataNaoEncontrado or ErroDiretorioPlanilhasNaoEncontrado or ErroDiretorioMensagensNaoEncontrado as erro:
             self.sistema_msg_erro(erro, 'verificar existência de diretórios')
+
+    def verificar_arquivos_mensagens(self) -> None:
+        try:
+            self.gerenciador_caminhos.verificar_existencia_arquivos_mensagem_etapas_ps()
+            self.sistema_msg_sucesso('Todos os arquivos de mensagens de resultado de PS foram encontrados.')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'verificar existência de arquivos de mensagens de PS')
 
     def carregar_planilha_ps(self) -> None:
         try:

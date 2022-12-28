@@ -65,16 +65,16 @@ class InterfaceGrafica(customtkinter.CTk):
         )
 
         # Posicionando elementos no Menu Principal
-        self.container_menu_principal.grid(row=0, column=0, padx=(10,0))
-        self.container_email.grid(row=0, column=0)
-        self.container_planilhas.grid(row=1, column=0)
-        self.email_label.grid(row=0, column=0, padx=20, pady=(10, 10))
-        self.input_email.grid(row=1, column=0, padx=20, pady=(0,10))
-        self.input_senha.grid(row=2, column=0, padx=20, pady=(0, 10))
-        self.botao_login.grid(row=3, column=0, padx=20, pady=(0, 10))
-        self.planilhas_label.grid(row=4, column=0, padx=20, pady=(10, 10))
-        self.botao_carregar_planilha_ps.grid(row=5, column=0, padx=20, pady=(0, 5))
-        self.botao_carregar_planilha_180.grid(row=6, column=0, padx=20, pady=(5, 10))
+        self.container_menu_principal.grid(row=0, column=0, padx=(10,0)) # Container menu principal
+        self.container_email.grid(row=0, column=0) # Container email (inputs e botão de login)
+        self.container_planilhas.grid(row=1, column=0) # Container dos botões de carregar planilha
+        self.email_label.grid(row=0, column=0, padx=20, pady=(10, 10)) # Título do container email
+        self.input_email.grid(row=1, column=0, padx=20, pady=(0,10)) # Input de email
+        self.input_senha.grid(row=2, column=0, padx=20, pady=(0, 10)) # Input da senha do email
+        self.botao_login.grid(row=3, column=0, padx=20, pady=(0, 10)) # Botão de login
+        self.planilhas_label.grid(row=4, column=0, padx=20, pady=(10, 10)) # Título do container Planilhas
+        self.botao_carregar_planilha_ps.grid(row=5, column=0, padx=20, pady=(0, 5)) # Botão Planilha PS
+        self.botao_carregar_planilha_180.grid(row=6, column=0, padx=20, pady=(5, 10)) # Botão Planilha 180
 
         # Criando elementos na Seção Principal
         self.principal = customtkinter.CTkFrame(

@@ -5,9 +5,10 @@ from Planilha import Planilha
 from Candidatos import Candidatos
 from GerenciadorCaminhos import GerenciadorCaminhos
 from GerenciadorEmails import GerenciadorEmails
+from GeradorMensagem import GeradorMensagem
 
 from exceptions import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
-from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
+from constantes import COLUNAS_ESPERADAS_PLANILHA_PS, ETAPAS_PS
 
 #TODO: Criar um botão no menu lateral de InterfaceGrafica para printar a lista de candidatos
 #TODO: Inserir lógica que trave os botões caso não exista planilha, candidatos
@@ -27,7 +28,7 @@ class App(InterfaceGrafica):
         # Atributos referentes as demais classes
         self.planilha = None
         self.candidatos = None
-        self.gerenciador_mensagem = None
+        self.gerador_mensagens = GeradorMensagem()
         self.gerenciador_email = None
         self.gerenciador_caminhos = GerenciadorCaminhos()
 
@@ -89,6 +90,16 @@ class App(InterfaceGrafica):
                 raise Exception('Faltam dados para operação! Por favor, preencha os dois inputs (email e senha).')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'salvar dados do email')
+
+    def carregar_mensagens_ps(self, botao_clicado: str):
+        try:
+            etapa_selecionada = ETAPAS_PS[botao_clicado] # Extrai o valor da etapa do PS para uso no código
+            self.sistema_msg_alerta(f'Etapa de {botao_clicado} selecionada:')
+            self.sistema_msg_padrao(f'Carregando mensagens para etapa {botao_clicado}...')
+            self.gerador_mensagens.carregar_msg_resultado_etapa_ps(etapa_selecionada)
+            self.sistema_msg_sucesso(f'Mensagens de aprovado/reprovado da etapa {botao_clicado} foram carregadas com sucesso!')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'carregar mensagens da etapa do PS')
 
 if __name__ == '__main__':
     app = App()

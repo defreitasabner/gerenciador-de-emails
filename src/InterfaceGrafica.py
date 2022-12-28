@@ -21,9 +21,7 @@ class InterfaceGrafica(customtkinter.CTk):
 
         # Criando elementos do Menu Principal
         self.container_menu_principal = customtkinter.CTkFrame(
-            self, 
-            width=200, 
-            corner_radius=0
+            self
         )
         self.container_email = customtkinter.CTkFrame(
             self.container_menu_principal
@@ -42,6 +40,7 @@ class InterfaceGrafica(customtkinter.CTk):
         )
         self.input_senha = customtkinter.CTkEntry(
             self.container_email,
+            show='*',
             placeholder_text='Digite a senha'
         )
         self.botao_login = customtkinter.CTkButton(
@@ -102,8 +101,8 @@ class InterfaceGrafica(customtkinter.CTk):
         )
         self.selecao_etapa = customtkinter.CTkSegmentedButton(
             self.container_ps,
-            values = ETAPAS_PS,
-            command= self.evento_selecao_etapa
+            values = list(ETAPAS_PS.keys()), # Pega as chaves relativas as etapas do PS
+            command= self.carregar_mensagens_ps
         )
         self.botao_verificar_msg = customtkinter.CTkButton(
             self.container_msg_email,
@@ -220,8 +219,9 @@ class InterfaceGrafica(customtkinter.CTk):
     def evento_alterar_tema(self, novo_tema: str) -> None:
         customtkinter.set_default_color_theme(novo_tema)
 
-    def evento_selecao_etapa(self, botao_clicado: str):
-        print(botao_clicado)
+    def carregar_mensagens_ps(self, botao_clicado: str):
+        self.sistema_msg_alerta(f'Etapa de {botao_clicado} selecionada:')
+        self.sistema_msg_alerta(f'Carregando mensagens de "aprovado" e "reprovado" para essa etapa...')
 
     def evento_verificar_mensagens(self):
         self.sistema_msg_padrao('Verificando Mensagens...')

@@ -11,13 +11,13 @@ COLUNAS_ESPERADAS_PLANILHA_PS = [
 ]
 
 # Constantes relativas ao Processo Seletivo
-ETAPAS_PS = [
-    'Formulário',
-    'Dinâmica',
-    'Entrevista',
-    'Capacitação',
-    'Trainee'
-]
+ETAPAS_PS = {
+    'Formulário': 'formulario',
+    'Dinâmica': 'dinamica',
+    'Entrevista': 'entrevista',
+    'Capacitação': 'capacitacao',
+    'Trainee': 'trainee'
+} # Optei por um dicionário para apresentarmos as chaves no terminal (com caracteres especiais) e dentro do código usamos os valores (sem carecteres especiais)
 
 # Constantes da Classe InterfaceGrafica
 OPCOES_APARENCIA = [

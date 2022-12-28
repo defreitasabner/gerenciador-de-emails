@@ -4,6 +4,7 @@ from InterfaceGrafica import InterfaceGrafica
 from Planilha import Planilha
 from Candidatos import Candidatos
 from GerenciadorCaminhos import GerenciadorCaminhos
+from GerenciadorEmails import GerenciadorEmails
 
 from exceptions import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
@@ -73,6 +74,21 @@ class App(InterfaceGrafica):
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar Planilhas de PS')
 
+    def salvar_dados_email(self) -> None:
+        try:
+            # Executa a salvar dados do email da interface gráfica
+            dados_email = super().salvar_dados_email() # retorna um dicionário com email e senha digitados nos inputs
+            # Verifica se os inputs não estão vazios
+            if len(dados_email['email']) != 0 and len(dados_email['senha']) != 0:
+                self.gerenciador_email = GerenciadorEmails(
+                    email_usuario = dados_email['email'],
+                    senha = dados_email['senha']
+                )
+                self.sistema_msg_sucesso('E-mail salvo com sucesso! Agora é possível enviar mensagens.')
+            else:
+                raise Exception('Faltam dados para operação! Por favor, preencha os dois inputs (email e senha).')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'salvar dados do email')
 
 if __name__ == '__main__':
     app = App()

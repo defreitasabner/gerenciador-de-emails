@@ -1,5 +1,6 @@
 import tkinter
 import customtkinter
+from typing import Dict
 
 from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL
 from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS
@@ -207,8 +208,11 @@ class InterfaceGrafica(customtkinter.CTk):
     def carregar_planilha_180(self):
         self.sistema_msg_padrao('Abrindo Planilha de 180...')
 
-    def salvar_dados_email(self):
+    def salvar_dados_email(self) -> Dict[str,str]:
+        dados_email = {'email': self.input_email.get(), 'senha': self.input_senha.get()}
         self.sistema_msg_padrao(f'Enviando dados do email: {self.input_email.get()} ...')
+        return dados_email
+        
 
     def evento_alterar_aparencia(self, nova_aparencia: str) -> None:
         customtkinter.set_appearance_mode(nova_aparencia)

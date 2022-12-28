@@ -13,16 +13,6 @@ class Candidatos:
         self.__lista_candidatos: List[Candidato] = []
         self.__adicionar_candidatos(dados_planilha_ps)
 
-    """
-    Métodos Getters e Setters
-    ===
-    Os métodos abaixo servem apenas para acessarmos (getters) e alterarmos (setters) os valores dos atributos privados da classe.
-    """
-
-    @property
-    def lista_candidatos(self) -> List[Candidato]:
-        return self.__lista_candidatos
-
     def __adicionar_candidato(self, novo_candidato: Dict[str,str]) -> None:
         """
         Método privado que recebe um dicionário (`Dict[str,str]`) e adiciona um objeto `Candidato` ao atributo privado `__lista_candidatos`.
@@ -52,3 +42,13 @@ class Candidatos:
         """
         for dado in dados_planilha_ps:
             self.__adicionar_candidato(dado)
+
+    """
+    Métodos Getters e Setters
+    ===
+    Os métodos abaixo servem apenas para acessarmos (getters) e alterarmos (setters) os valores dos atributos privados da classe.
+    """
+
+    @property
+    def lista_candidatos(self) -> List[Candidato]:
+        return self.__lista_candidatos

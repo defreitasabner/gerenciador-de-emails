@@ -24,8 +24,19 @@ class GeradorMensagem:
                 
             for linha in arquivo_txt:
                 msg += linha
-
+        
+        self.__validar_conteudo_msg_resultado_etapa_ps(msg)
+        
         return msg
+
+    def __validar_conteudo_msg_resultado_etapa_ps(self, mensagem: str) -> None:
+        """
+        Método privado chamado no momento de carregar uma mensagem de resultado de PS. Esse método verifica se o conteúdo da mensagem está vazio, caso esteja, retorna uma exceção. Também verifica se a expressão `$candidato` está presente na mensagem para substituição do nome do candidato, caso não esteja, retorna uma exceção.
+        """
+        if len(mensagem) == 0:
+            raise Exception('O arquivo de mensagem foi encontrado, mas seu conteúdo está vazio. Por favor, adicione algum conteúdo no arquivo.')
+        if '$candidato' not in mensagem:
+            raise Exception('Não foi possível encontrar o template "$candidato" na mensagem. Por favor, adicione essa expressão no local adequado para que o nome do candidato possa ser incluído na mensagem.')
 
     def carregar_msg_resultado_etapa_ps(self, etapa_ps: str) -> None:
         """

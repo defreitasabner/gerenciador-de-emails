@@ -26,6 +26,18 @@ class Candidato:
         self.__capacitacao: Union[str, None] = capacitacao
         self.__trainee: Union[str, None] = trainee
 
+    def __str__(self) -> str:
+        """
+        Método especial de classes Python. Retorna uma `str` que representa a classe quando usamos a função `str()` ou `print()` (diretamente).
+        """
+        return f'Candidato {self.id}: {self.nome} => form: {self.formulario}| din: {self.dinamica}| ent: {self.entrevista} | cap: {self.capacitacao}| tra: {self.trainee};'
+
+    def __repr__(self) -> str:
+        """
+        Método especial de classes Python. Retorna uma `str` que representa a classe em termos de atributos e seus valores quando usamos a função `repr()` ou `print()` (com ela dentro de uma `list`).
+        """
+        return f'Candidato(id= {self.id}, nome= {self.nome}, email= {self.email})'
+    
     """
     Métodos Getters e Setters
     ===

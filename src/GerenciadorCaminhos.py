@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from config import DIRETORIO_DATA, DIRETORIO_PLANILHAS, DIRETORIO_MSG
-from exception import ErroDiretorioDataNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado, ErroDiretorioMensagensNaoEncontrado
+from exceptions import ErroDiretorioDataNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado, ErroDiretorioMensagensNaoEncontrado
 
 #TODO: Criar um método para verficar quais mensagens estão presentes no diretório mensagem
 class GerenciadorCaminhos:

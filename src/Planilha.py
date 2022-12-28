@@ -2,7 +2,7 @@ import csv
 from typing import List, Dict, Union
 
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
-from exception import ErroColunasEsperadas
+from exceptions import ErroColunasEsperadas
 
 #TODO: Adicionar Null Safety nos métodos (principalmente os getters e setters)
 #TODO: Resolver o problema com nome com acentuação, pois isso gera problema no futuro

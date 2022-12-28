@@ -5,9 +5,14 @@ from Planilha import Planilha
 from Candidatos import Candidatos
 from GerenciadorCaminhos import GerenciadorCaminhos
 
-from exception import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
+from exceptions import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
 
+#TODO: Criar um botão no menu lateral de InterfaceGrafica para printar a lista de candidatos
+#TODO: Inserir lógica que trave os botões caso não exista planilha, candidatos
+#TODO: Inserir lógica de carregamento de mensagem associada ao botão de seleção de etapas
+#TODO: Criar janela de login
+#TODO: Criar janela de visualização das mensagens
 class App(InterfaceGrafica):
 
     def __init__(self):

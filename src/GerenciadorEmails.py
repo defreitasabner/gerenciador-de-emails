@@ -4,6 +4,9 @@ import smtplib
 
 from GeradorMensagem import GeradorMensagem
 
+#TODO: Implementar __str__ e __repr__ para essa classe ficar apresentável no terminal
+#TODO: Implementar validação do campo email
+#TODO: Implementar validação do campo senha
 #TODO: Adicionar validação de mensagens que serão enviadas
 class GerenciadorEmails:
 

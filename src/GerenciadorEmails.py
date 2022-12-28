@@ -37,7 +37,7 @@ class GerenciadorEmails:
         server.login(objeto_email['From'], password)
         
         for candidato in lista_candidatos:
-            objeto_email.set_payload(gerador_mensagem.gerar_mensagem_ps(etapa_ps, candidato))
+            objeto_email.set_payload(gerador_mensagem.gerar_msg_resultado_etapa_ps(etapa_ps, candidato))
             server.sendmail(objeto_email['From'], candidato['email'], objeto_email.as_string().encode('utf-8'))
             print('Email enviado para' + candidato['nome'])
 

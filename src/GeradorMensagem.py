@@ -3,7 +3,9 @@ import os
 
 from caminhos import DIRETORIO_MSG
 from MensagemPS import MensagemPS
+from Candidato import Candidato
 
+#TODO: Informar qual mensagem está com problema no método __validar_mensagem
 #TODO: criar validação de entrada do parâmetro etapa_ps com as colunas
 class GeradorMensagem:
 
@@ -49,27 +51,27 @@ class GeradorMensagem:
         msg_aprovado = self.__carregar_mensagem(caminho_msg_aprovado)
         msg_reprovado = self.__carregar_mensagem(caminho_msg_reprovado)
 
-        self.mensagem_carregada = MensagemPS(msg_aprovado, msg_reprovado)
+        self.mensagem_carregada = MensagemPS(etapa_ps, msg_aprovado, msg_reprovado)
 
-    def gerar_mensagem_ps(self, etapa_ps: str, candidato: Dict[str, str]) -> str:
+    def gerar_msg_resultado_etapa_ps(self, candidato: Candidato) -> str:
 
         if self.mensagem_carregada == None:
             raise Exception('Nenhuma mensagem foi carregada. Por favor, utilize o método carregar mensagem.')
-        else:
-            mensagem_resultado = ''
+        
+        mensagem_resultado = ''
 
-        nome_candidato = candidato['nome']
+        # Verifica se o Objeto candidato tem o valor aprovado ou reprovado na etapa da mensagem que está sendo gerada
 
-        if candidato[etapa_ps] == 'aprovado':
-            mensagem_tratada = self.mensagem_carregada.msg_aprovado.replace('$candidato', nome_candidato)
+        if getattr(candidato, self.mensagem_carregada.etapa_msg) == 'aprovado':
+            mensagem_tratada = self.mensagem_carregada.msg_aprovado.replace('$candidato', candidato.nome)
             mensagem_resultado = mensagem_tratada
 
-        elif candidato[etapa_ps] == 'reprovado':
-            mensagem_tratada = self.mensagem_carregada.msg_reprovado.replace('$candidato', nome_candidato)
+        elif getattr(candidato, self.mensagem_carregada.etapa_msg) == 'reprovado':
+            mensagem_tratada = self.mensagem_carregada.msg_reprovado.replace('$candidato', candidato.nome)
             mensagem_resultado = mensagem_tratada
 
         else:
-            Exception('Candidato ainda não foi avaliado nessa etapa')
+            Exception(f'O Candidato {candidato.nome} ainda não foi avaliado na etapa de {self.mensagem_carregada.etapa_msg}')
 
         return mensagem_resultado
 

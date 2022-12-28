@@ -1,8 +1,8 @@
 import tkinter
 import customtkinter
 
-from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL, LARGURA_JANELA_PRINCIPAL, ALTURA_JANELA_PRINCIPAL
-from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS, COLUNAS_ESPERADAS_PLANILHA_PS
+from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL
+from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS
 
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
@@ -19,47 +19,55 @@ class InterfaceGrafica(customtkinter.CTk):
         #self.geometry(f"{LARGURA_JANELA_PRINCIPAL}x{ALTURA_JANELA_PRINCIPAL}")
 
         # Criando elementos do Menu Principal
-        self.menu = customtkinter.CTkFrame(
+        self.container_menu_principal = customtkinter.CTkFrame(
             self, 
             width=200, 
             corner_radius=0
         )
+        self.container_email = customtkinter.CTkFrame(
+            self.container_menu_principal
+        )
+        self.container_planilhas = customtkinter.CTkFrame(
+            self.container_menu_principal
+        )
         self.email_label = customtkinter.CTkLabel(
-            self.menu, 
+            self.container_email, 
             text="E-mail", 
             font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.input_email = customtkinter.CTkEntry(
-            self.menu,
+            self.container_email,
             placeholder_text='Digite o e-mail (remetente)'
         )
         self.input_senha = customtkinter.CTkEntry(
-            self.menu,
+            self.container_email,
             placeholder_text='Digite a senha'
         )
         self.botao_login = customtkinter.CTkButton(
-            self.menu,
+            self.container_email,
             text='Salvar dados',
             command=self.salvar_dados_email
         )
         self.planilhas_label = customtkinter.CTkLabel(
-            self.menu, 
+            self.container_planilhas, 
             text="Planilhas", 
             font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.botao_carregar_planilha_ps = customtkinter.CTkButton(
-            self.menu, 
+            self.container_planilhas, 
             text = 'Carregar Planilha PS', 
             command=self.carregar_planilha_ps
         )
         self.botao_carregar_planilha_180 = customtkinter.CTkButton(
-            self.menu, 
+            self.container_planilhas, 
             text = 'Carregar Planilha 180', 
             command=self.carregar_planilha_180
         )
 
         # Posicionando elementos no Menu Principal
-        self.menu.grid(row=0, column=0, padx=(10,0))
+        self.container_menu_principal.grid(row=0, column=0, padx=(10,0))
+        self.container_email.grid(row=0, column=0)
+        self.container_planilhas.grid(row=1, column=0)
         self.email_label.grid(row=0, column=0, padx=20, pady=(10, 10))
         self.input_email.grid(row=1, column=0, padx=20, pady=(0,10))
         self.input_senha.grid(row=2, column=0, padx=20, pady=(0, 10))
@@ -192,35 +200,6 @@ class InterfaceGrafica(customtkinter.CTk):
         self.sistema_msg_padrao(f'Ocorreu um erro ao tentar {procedimento}:', tag='erro')
         self.sistema_msg_padrao(msg_erro, tag='erro')
     
-    # Janela de configuração que abre quando clica no botão de configuração
-    def abrir_janela_login(self):
-        janela_login = customtkinter.CTkToplevel(self)
-        janela_login.wm_transient(self)
-
-        janela_login.title('Login E-mail')
-
-        # Construindo elementos da janela Login
-        container = customtkinter.CTkFrame(janela_login)
-        input_email = customtkinter.CTkEntry(
-            container,
-            placeholder_text='Digite o e-mail (remetente)'
-        )
-        input_senha = customtkinter.CTkEntry(
-            container,
-            placeholder_text='Digite a senha'
-        )
-        botao_submeter_login = customtkinter.CTkButton(
-            container,
-            text='Salvar dados',
-            command=self.salvar_dados_email
-        )
-
-        # Posicionando Elementos da Janela Login
-        container.grid(row=0, column=0, padx=20, pady=20)
-        input_email.grid(row=0, column=0, padx=10)
-        input_senha.grid(row=1, column=0, padx=10)
-        botao_submeter_login.grid(row=2, column=0, padx=10)
-
     # Comando responsável pro passar a planilha do processo seletivo
     def carregar_planilha_ps(self):
         self.sistema_msg_padrao('Abrindo Planilha de PS...')

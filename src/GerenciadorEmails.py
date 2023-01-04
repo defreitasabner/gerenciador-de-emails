@@ -12,8 +12,8 @@ from GeradorMensagem import GeradorMensagem
 class GerenciadorEmails:
 
     def __init__(self, email_usuario: str, senha: str) -> None:
-        self.__email_usuario = email_usuario
-        self.__senha = senha
+        self.__email_usuario = self.__validar_email(email_usuario)
+        self.__senha = self.__validar_senha(senha)
 
     def enviar_emails_ps(self, gerador_mensagem: GeradorMensagem, lista_candidatos: List[Candidato]) -> None:
 
@@ -40,12 +40,19 @@ class GerenciadorEmails:
             print('Email enviado para' + candidato['nome'])
 
     # Melhorar essa validação usando regex
-    def __validar_email(self, email: str) -> None:
+    def __validar_email(self, email: str) -> str:
 
         if (email != None) and ('@' in email):
             return email
         else:
             raise Exception('E-mail inválido')
+
+    def __validar_senha(self, senha: str) -> str:
+
+        if (senha != None) and senha != '':
+            return senha
+        else:
+            raise Exception('Senha nula é inválida')
 
     """
     Métodos Getters e Setters

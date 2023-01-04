@@ -1,4 +1,6 @@
+import os
 from tkinter import filedialog
+from dotenv import load_dotenv
 
 from InterfaceGrafica import InterfaceGrafica
 from Planilha import Planilha
@@ -33,6 +35,7 @@ class App(InterfaceGrafica):
         self.mensagem_inicial()
         self.verificar_diretorios()
         self.verificar_arquivos_mensagens()
+        self.login_automatico()
 
     def mensagem_inicial(self) -> None:
         self.sistema_msg_padrao('Bem-vindo(a) ao Gerenciador de E-mails!')
@@ -63,6 +66,19 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Todos os arquivos de mensagens de resultado de PS foram encontrados.')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'verificar existência de arquivos de mensagens de PS')
+
+    def login_automatico(self):
+        """
+        Método responsável por fazer o login automaticamente caso exista um arquivo `.env` com as especificações corretas das variáveis de ambiente: `USUARIO` e `SENHA`.
+        """
+        try:
+            # Tenta realizar o login instanciando a classe GerenciadorEmail puxando info do .env
+            load_dotenv()
+            self.gerenciador_email = GerenciadorEmails(str(os.getenv('USUARIO')), str(os.getenv('SENHA')))
+            self.sistema_msg_sucesso('Login automático realizado com sucesso!')
+        except Exception as erro_inesperado:
+            # Informa ao usuário que não foi possível realizar o login automático e pede para logar
+            self.sistema_msg_erro(erro_inesperado, 'login automático')
 
     def carregar_planilha_ps(self) -> None:
         try:

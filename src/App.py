@@ -11,6 +11,7 @@ from GeradorMensagem import GeradorMensagem
 
 from exceptions import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS, ETAPAS_PS
+from caminhos import DIRETORIO_PLANILHAS
 
 #TODO: Criar visualização das mensagens carregadas
 #TODO: Inserir lógica que trave os botões caso não exista planilha, candidatos ou mensagens carregadas
@@ -83,7 +84,7 @@ class App(InterfaceGrafica):
     def carregar_planilha_ps(self) -> None:
         try:
             caminho_arquivo_csv = filedialog.askopenfilename(
-                initialdir = './data/planilhas/',
+                initialdir = DIRETORIO_PLANILHAS,
                 title = 'Selecione a Planilha de Processo Seletivo (.csv)',
                 filetypes = (('CSV Files', '*.csv'),)
             )

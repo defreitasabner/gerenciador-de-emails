@@ -104,6 +104,11 @@ class InterfaceGrafica(customtkinter.CTk):
             values = list(ETAPAS_PS.keys()), # Pega as chaves relativas as etapas do PS
             command= self.carregar_mensagens_ps
         )
+        self.botao_verificar_candidatos = customtkinter.CTkButton(
+            self.container_msg_email,
+            text='Verificar Candidatos',
+            command=self.verificar_candidatos
+        )
         self.botao_verificar_msg = customtkinter.CTkButton(
             self.container_msg_email,
             text='Verificar Mensagens',
@@ -124,8 +129,9 @@ class InterfaceGrafica(customtkinter.CTk):
         self.etapas_ps_label.grid(row=0, column=0)
         self.selecao_etapa.grid(row=1, column=0, padx=10, pady=(0, 10))
         # Posicionando Elementos dentro do Container de msg e email
-        self.botao_verificar_msg.grid(row=0, column=0, padx=5)
-        self.botao_enviar_emails.grid(row=0, column=1, padx=5)
+        self.botao_verificar_candidatos.grid(row=0, column=0, padx=5)
+        self.botao_verificar_msg.grid(row=0, column=1, padx=5)
+        self.botao_enviar_emails.grid(row=1, column=0, columnspan=2, padx=5, pady=10)
 
         # Criando elementos do Menu de configuração
         self.configuracoes = customtkinter.CTkFrame(self, width=200)
@@ -212,7 +218,6 @@ class InterfaceGrafica(customtkinter.CTk):
         self.sistema_msg_padrao(f'Enviando dados do email: {self.input_email.get()} ...')
         return dados_email
         
-
     def evento_alterar_aparencia(self, nova_aparencia: str) -> None:
         customtkinter.set_appearance_mode(nova_aparencia)
 
@@ -222,6 +227,9 @@ class InterfaceGrafica(customtkinter.CTk):
     def carregar_mensagens_ps(self, botao_clicado: str):
         self.sistema_msg_alerta(f'Etapa de {botao_clicado} selecionada:')
         self.sistema_msg_alerta(f'Carregando mensagens de "aprovado" e "reprovado" para essa etapa...')
+
+    def verificar_candidatos(self):
+        self.sistema_msg_padrao('Verificando Candidatos...')
 
     def evento_verificar_mensagens(self):
         self.sistema_msg_padrao('Verificando Mensagens...')

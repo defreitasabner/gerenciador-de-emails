@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List
 import email.message
 import smtplib
 
@@ -6,7 +6,7 @@ from Candidato import Candidato
 from GeradorMensagem import GeradorMensagem
 
 #TODO: Implementar __str__ e __repr__ para essa classe ficar apresentável no terminal
-#TODO: Implementar validação do campo email
+#TODO: Melhorar validação do campo email
 #TODO: Implementar validação do campo senha
 #TODO: Adicionar validação de mensagens que serão enviadas
 class GerenciadorEmails:
@@ -14,7 +14,6 @@ class GerenciadorEmails:
     def __init__(self, email_usuario: str, senha: str) -> None:
         self.__email_usuario = email_usuario
         self.__senha = senha
-
 
     def enviar_emails_ps(self, gerador_mensagem: GeradorMensagem, lista_candidatos: List[Candidato]) -> None:
 
@@ -40,6 +39,14 @@ class GerenciadorEmails:
             server.sendmail(objeto_email['From'], candidato['email'], objeto_email.as_string().encode('utf-8'))
             print('Email enviado para' + candidato['nome'])
 
+    # Melhorar essa validação usando regex
+    def __validar_email(self, email: str) -> None:
+
+        if (email != None) and ('@' in email):
+            return email
+        else:
+            raise Exception('E-mail inválido')
+
     """
     Métodos Getters e Setters
     ===
@@ -52,7 +59,7 @@ class GerenciadorEmails:
 
     @email_usuario.setter
     def email_usuario(self, novo_email) -> None:
-        self.__email_usuario = novo_email
+        self.__email_usuario = self.__validar_email(novo_email)
 
     @property
     def senha(self) -> str:

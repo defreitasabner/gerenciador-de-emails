@@ -104,7 +104,7 @@ class App(InterfaceGrafica):
                 raise Exception('Faltam dados para operação! Por favor, preencha os dois inputs (email e senha).')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'salvar dados do email')
-    
+
     def carregar_mensagens_ps(self, botao_clicado: str):
         try:
             etapa_selecionada = ETAPAS_PS[botao_clicado] # Extrai o valor da etapa do PS para uso no código
@@ -114,6 +114,13 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso(f'Mensagens de aprovado/reprovado da etapa {botao_clicado} foram carregadas com sucesso!')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar mensagens da etapa do PS')
+
+    def evento_enviar_emails(self):
+        try:
+            self.gerenciador_email.enviar_emails_ps(self.gerador_mensagens, self.candidatos.lista_candidatos)
+            self.sistema_msg_sucesso('Todos e-mails foram enviados com sucesso!')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'enviar e-mails')
 
 if __name__ == '__main__':
     app = App()

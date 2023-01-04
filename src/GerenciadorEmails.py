@@ -2,6 +2,7 @@ from typing import List, Dict
 import email.message
 import smtplib
 
+from Candidato import Candidato
 from GeradorMensagem import GeradorMensagem
 
 #TODO: Implementar __str__ e __repr__ para essa classe ficar apresentável no terminal
@@ -15,11 +16,9 @@ class GerenciadorEmails:
         self.__senha = senha
 
 
-    def enviar_emails_ps(self, etapa_ps: str, lista_candidatos: List[Dict[str, str]]) -> None:
+    def enviar_emails_ps(self, gerador_mensagem: GeradorMensagem, lista_candidatos: List[Candidato]) -> None:
 
-        # Gerador de mensagem preparando as mensagens
-        gerador_mensagem = GeradorMensagem()
-        gerador_mensagem.carregar_msg_resultado_etapa_ps(etapa_ps)
+        etapa_ps = gerador_mensagem.mensagem_carregada.etapa_msg
 
         # Configurações para enviar o email
         objeto_email = email.message.Message() # objeto email
@@ -37,7 +36,7 @@ class GerenciadorEmails:
         server.login(objeto_email['From'], password)
         
         for candidato in lista_candidatos:
-            objeto_email.set_payload(gerador_mensagem.gerar_msg_resultado_etapa_ps(etapa_ps, candidato))
+            objeto_email.set_payload(gerador_mensagem.gerar_msg_resultado_etapa_ps(candidato))
             server.sendmail(objeto_email['From'], candidato['email'], objeto_email.as_string().encode('utf-8'))
             print('Email enviado para' + candidato['nome'])
 

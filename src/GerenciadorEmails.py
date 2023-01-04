@@ -18,8 +18,30 @@ class GerenciadorEmails:
     def __str__(self) -> str:
         return f'E-mail configurado: {self.email_usuario}'
 
+    #TODO: Adicionar método que verifica se todos os candidatos foram avaliados na categoria antes de enviar o email
+    def verifica_se_todos_foram_avaliados(self, etapa_ps: str, lista_candidatos: List[Candidato]):
+        """
+        Método responsável por verificar se todos os candidatos possuem valores de `aprovado` ou `reprovado` para a etapa do PS selecionada. Caso alguma candidato possua um valor diferente do esperado, retorna um erro e não executa o procedimento.
+        """        
+        for candidato in lista_candidatos:
+            if getattr(candidato, etapa_ps) == 'aprovado':
+                continue
+            elif getattr(candidato, etapa_ps) == 'reprovado':
+                continue
+            else:
+                raise Exception(f'O Candidato {candidato.id} ainda não foi avaliado como aprovado/reprovado.')
+
     def enviar_emails_ps(self, gerador_mensagem: GeradorMensagem, lista_candidatos: List[Candidato]) -> None:
 
+        # Verifica se existe alguma mensagem carregada
+        if gerador_mensagem.mensagem_carregada == None:
+            raise Exception('Nenhuma mensagem foi carregada até o momento.')
+        
+
+        # Verifica se todos os candidatos já foram avaliados na etapa selecionada
+        self.verifica_se_todos_foram_avaliados(etapa_ps, lista_candidatos)
+        
+        # Extrai a etapa da mensagem que será enviada
         etapa_ps = gerador_mensagem.mensagem_carregada.etapa_msg
 
         # Configurações para enviar o email

@@ -97,15 +97,6 @@ class App(InterfaceGrafica):
             self.sistema_msg_erro(erro, 'carregar Planilha de PS')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar Planilhas de PS')
-
-    def verificar_candidatos(self):
-        try:
-            if self.candidatos != None:
-                self.sistema_msg_padrao(self.candidatos)
-            else:
-                self.sistema_msg_alerta('Nenhum candidato carregado ainda. Por favor, abra uma Planilha de PS para carregar os candidatos.')
-        except Exception as erro_inesperado:
-            self.sistema_msg_erro(erro_inesperado, 'verificar Candidatos')
     
     def salvar_dados_email(self) -> None:
         try:
@@ -133,6 +124,27 @@ class App(InterfaceGrafica):
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar mensagens da etapa do PS')
 
+    def verificar_candidatos(self):
+        try:
+            if self.candidatos != None:
+                self.sistema_msg_padrao(self.candidatos)
+            else:
+                self.sistema_msg_alerta('Nenhum candidato carregado ainda. Por favor, abra uma Planilha de PS para carregar os candidatos.')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'verificar Candidatos')
+
+    def evento_verificar_mensagens(self):
+        try:
+            if self.gerador_mensagens.mensagem_carregada != None:
+                self.sistema_msg_alerta('Mensagem de Aprovado:')
+                self.sistema_msg_padrao(self.gerador_mensagens.mensagem_carregada.msg_aprovado)
+                self.sistema_msg_alerta('Mensagem de Reprovado:')
+                self.sistema_msg_padrao(self.gerador_mensagens.mensagem_carregada.msg_reprovado)
+            else:
+                self.sistema_msg_alerta('Nenhuma mensagem foi carregada ainda. Selecione uma etapa para carregar uma mensagem.')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'verificar mensagens')
+    
     def evento_enviar_emails(self):
         try:
             self.gerenciador_email.enviar_emails_ps(self.gerador_mensagens, self.candidatos.lista_candidatos)

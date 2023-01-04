@@ -5,7 +5,6 @@ from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
 from exceptions import ErroColunasEsperadas
 
 #TODO: Adicionar Null Safety nos métodos (principalmente os getters e setters)
-#TODO: Resolver o problema com nome com acentuação, pois isso gera problema no futuro
 #TODO: Fazer validação de novas colunas
 class Planilha:
     
@@ -20,7 +19,7 @@ class Planilha:
 
         dados = []
 
-        with open(caminho_csv, 'r', encoding='utf-8') as planilha:
+        with open(caminho_csv, 'r', encoding='utf-8-sig', newline='') as planilha:
                 
             dados_planilha = csv.DictReader(planilha, delimiter=',', skipinitialspace=True)
                 

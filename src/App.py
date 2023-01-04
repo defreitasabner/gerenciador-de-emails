@@ -77,6 +77,7 @@ class App(InterfaceGrafica):
             load_dotenv()
             self.gerenciador_email = GerenciadorEmails(str(os.getenv('USUARIO')), str(os.getenv('SENHA')))
             self.sistema_msg_sucesso('Login automático realizado com sucesso!')
+            self.sistema_msg_padrao(self.gerenciador_email)
         except Exception as erro_inesperado:
             # Informa ao usuário que não foi possível realizar o login automático e pede para logar
             self.sistema_msg_erro(erro_inesperado, 'login automático')

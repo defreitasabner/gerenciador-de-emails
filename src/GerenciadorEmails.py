@@ -15,6 +15,9 @@ class GerenciadorEmails:
         self.__email_usuario = self.__validar_email(email_usuario)
         self.__senha = self.__validar_senha(senha)
 
+    def __str__(self) -> str:
+        return f'E-mail configurado: {self.email_usuario}'
+
     def enviar_emails_ps(self, gerador_mensagem: GeradorMensagem, lista_candidatos: List[Candidato]) -> None:
 
         etapa_ps = gerador_mensagem.mensagem_carregada.etapa_msg

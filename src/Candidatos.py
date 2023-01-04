@@ -2,7 +2,7 @@ from typing import List, Dict, Union
 
 from Candidato import Candidato
 
-from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
+from constantes import COLUNAS_ESPERADAS_PLANILHA_PS, ETAPAS_PS
 
 class Candidatos:
 
@@ -13,6 +13,42 @@ class Candidatos:
         self.__lista_candidatos: List[Candidato] = []
         self.__adicionar_candidatos(dados_planilha_ps)
 
+
+    def __str__(self) -> str:
+
+        total = len(self.lista_candidatos)
+        info_por_etapa = ''
+        
+        for etapa in list(ETAPAS_PS.keys()):
+            info_por_etapa += self.informacao_candidatos_por_etapa(etapa)
+
+        return f'Total de Candidatos: {total}\nPor Etapa (aprovados | reprovados | não-avaliados):\n' + info_por_etapa
+
+    def informacao_candidatos_por_etapa(self, etapa):
+
+        etapa_ps_tratada = ETAPAS_PS[etapa]
+
+        if etapa_ps_tratada in list(ETAPAS_PS.values()):
+            
+            aprovados = 0
+            reprovados = 0
+            nao_avaliados = 0
+
+            for candidato in self.lista_candidatos:
+                if getattr(candidato, etapa_ps_tratada) == 'aprovado':
+                    aprovados += 1
+                elif getattr(candidato, etapa_ps_tratada) == 'reprovado':
+                    reprovados += 1
+                else:
+                    nao_avaliados += 1
+
+            return f'-> {etapa[:3]}.: {aprovados} | {reprovados} | {nao_avaliados}\n' 
+
+        else:
+            raise Exception(f'A Etapa {etapa} não é válida!')
+
+
+    
     def __adicionar_candidato(self, novo_candidato: Dict[str,str]) -> None:
         """
         Método privado que recebe um dicionário (`Dict[str,str]`) e adiciona um objeto `Candidato` ao atributo privado `__lista_candidatos`.

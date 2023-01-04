@@ -10,7 +10,6 @@ from GeradorMensagem import GeradorMensagem
 from exceptions import ErroColunasEsperadas, ErroDiretorioDataNaoEncontrado, ErroDiretorioMensagensNaoEncontrado, ErroDiretorioPlanilhasNaoEncontrado
 from constantes import COLUNAS_ESPERADAS_PLANILHA_PS, ETAPAS_PS
 
-#TODO: Criar um botão no menu lateral de InterfaceGrafica para printar: lista de candidatos e suas informações
 #TODO: Criar visualização das mensagens carregadas
 #TODO: Inserir lógica que trave os botões caso não exista planilha, candidatos ou mensagens carregadas
 class App(InterfaceGrafica):
@@ -81,6 +80,15 @@ class App(InterfaceGrafica):
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar Planilhas de PS')
 
+    def verificar_candidatos(self):
+        try:
+            if self.candidatos != None:
+                self.sistema_msg_padrao(self.candidatos)
+            else:
+                self.sistema_msg_alerta('Nenhum candidato carregado ainda. Por favor, abra uma Planilha de PS para carregar os candidatos.')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'verificar Candidatos')
+    
     def salvar_dados_email(self) -> None:
         try:
             # Executa a salvar dados do email da interface gráfica
@@ -96,7 +104,7 @@ class App(InterfaceGrafica):
                 raise Exception('Faltam dados para operação! Por favor, preencha os dois inputs (email e senha).')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'salvar dados do email')
-
+    
     def carregar_mensagens_ps(self, botao_clicado: str):
         try:
             etapa_selecionada = ETAPAS_PS[botao_clicado] # Extrai o valor da etapa do PS para uso no código

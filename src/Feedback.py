@@ -8,3 +8,9 @@ class Feedback:
         self.remetente: str = remetente
         self.destinatario: str = destinatario
         self.mensagem: str = mensagem
+
+    def __str__(self) -> str:
+        return f'de {self.remetente} para {self.destinatario} : {self.mensagem[:16]}...'
+
+    def __repr__(self) -> str:
+        return f'(remetente: {self.remetente}, destinatario: {self.destinatario}, mensagem: {self.mensagem})'

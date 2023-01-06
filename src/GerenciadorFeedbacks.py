@@ -12,6 +12,9 @@ class GerenciadorFeedbacks:
     def __init__(self, dados_planilha_180: List[Dict[str,str]]) -> None:
         self.__lista_feedbacks = self.__adicionar_feedbacks(dados_planilha_180)
 
+    def __str__(self) -> str:
+        return f'Total de feedbacks: {self.lista_feedbacks}'
+
     def __adicionar_feedbacks(self, dados_planilha_180: List[Dict[str,str]]) -> List[Feedback]:
         """
         Método privado responsável por receber os dados vindos de uma classe `Planilha180`, instanciar objetos `Feedback` e adicioná-los à `lista_feedbacks`.

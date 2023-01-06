@@ -26,13 +26,3 @@ ETAPAS_PS = {
     'Capacitação': 'capacitacao',
     'Trainee': 'trainee'
 } # Optei por um dicionário para apresentarmos as chaves no terminal (com caracteres especiais) e dentro do código usamos os valores (sem carecteres especiais)
-
-# Constantes da Classe InterfaceGrafica
-OPCOES_APARENCIA = [
-    "Dark",
-    "Light",
-    "System"
-]
-OPCOES_TEMA = [
-    "dark-blue"
-]

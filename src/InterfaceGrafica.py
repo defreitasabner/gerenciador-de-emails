@@ -9,7 +9,7 @@ import customtkinter
 from typing import Dict
 
 from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL
-from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS
+from constantes import ETAPAS_PS
 
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
@@ -139,38 +139,6 @@ class InterfaceGrafica(customtkinter.CTk):
         self.botao_verificar_candidatos.grid(row=0, column=0, padx=5)
         self.botao_verificar_msg_ps.grid(row=0, column=1, padx=5)
         self.botao_enviar_emails_ps.grid(row=1, column=0, columnspan=2, padx=5, pady=10)
-
-        # Criando elementos do Menu de configuração
-        self.configuracoes = customtkinter.CTkFrame(self, width=200)
-        self.configuracoes_label = customtkinter.CTkLabel(
-            self.configuracoes, 
-            text="Configurações Visuais",
-             font=customtkinter.CTkFont(size=20, weight='bold')
-        )
-        self.modo_aparecencia_label = customtkinter.CTkLabel(self.configuracoes, 
-            text="Aparência:",
-            anchor="n"
-        )
-        self.modo_aparencia_opcoes = customtkinter.CTkOptionMenu(self.configuracoes, 
-            values= OPCOES_APARENCIA,
-            command=self.evento_alterar_aparencia
-        )
-        self.tema_label = customtkinter.CTkLabel(self.configuracoes, 
-            text="Tema:",
-            anchor="n"
-        )
-        self.tema_opcoes = customtkinter.CTkOptionMenu(self.configuracoes, 
-            values= OPCOES_TEMA,
-            command=self.evento_alterar_tema
-        )
-
-        # Posicionando elementos no Menu de Configuração
-        self.configuracoes.grid(row=0, column=2, padx=(0, 10))
-        self.configuracoes_label.grid(row=0, column=0, columnspan=2, padx=20, pady=(20, 10))
-        self.modo_aparecencia_label.grid(row=1, column=0, padx=5, pady=(10, 0))
-        self.modo_aparencia_opcoes.grid(row=1, column=1, padx=5, pady=(10, 10))
-        self.tema_label.grid(row=2, column=0, padx=5, pady=(10, 0))
-        self.tema_opcoes.grid(row=2, column=1, padx=5, pady=(10, 10))
 
         # Criando tags para os tipos de mensagem que o sistema pode exibir
         self.output_sistema.tag_config('erro', foreground='red')

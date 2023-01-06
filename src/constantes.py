@@ -1,4 +1,4 @@
-# Contastantes da Classe Planilha
+# Colunas esperadas pelas planilhas
 COLUNAS_ESPERADAS_PLANILHA_PS = [
     'id',
     'nome',
@@ -8,6 +8,14 @@ COLUNAS_ESPERADAS_PLANILHA_PS = [
     'entrevista',
     'capacitacao',
     'trainee'
+]
+
+COLUNAS_ESPERADAS_PLANILHA_180 = [
+    'Carimbo de data/hora',
+    'Endereço de e-mail',
+    'Quem é você?',
+    'Pra quem quer dar Feedback?',
+    'Feedback:'
 ]
 
 # Constantes relativas ao Processo Seletivo

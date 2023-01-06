@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from Planilha import Planilha
+from PlanilhaPS import PlanilhaPS
 from GerenciadorEmails import GerenciadorEmails
 
 def main():
@@ -13,7 +13,7 @@ def main():
     etapa_ps = 'formulario'
 
     # Classes que fazem as coisas
-    planilha = Planilha(caminho_csv)
+    planilha = PlanilhaPS(caminho_csv)
     gerenciador_emails = GerenciadorEmails(os.getenv('USUARIO'), os.getenv('SENHA'))
     
     # envia os emails

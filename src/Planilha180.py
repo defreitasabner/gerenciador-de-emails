@@ -1,18 +1,18 @@
 import csv
 from typing import List, Dict, Union
 
-from constantes import COLUNAS_ESPERADAS_PLANILHA_PS
+from constantes import COLUNAS_ESPERADAS_PLANILHA_180
 from exceptions import ErroColunasEsperadas
 
 #TODO: Adicionar Null Safety nos métodos (principalmente os getters e setters)
 #TODO: Fazer validação de novas colunas
-class Planilha:
+class Planilha180:
     
     def __init__(self, caminho_csv: str) -> None:
         """
         Classe responsável por gerenciar os arquivos `.csv`. O método construtor de `Planilha` recebe um caminho (`str`) para um arquivo `.csv` e armazena as informações obtidas no atributo `dados`, na forma de uma lista de dicionários.
         """
-        self.__colunas_esperadas: List[str] = COLUNAS_ESPERADAS_PLANILHA_PS
+        self.__colunas_esperadas: List[str] = COLUNAS_ESPERADAS_PLANILHA_180
         self.__dados: Union[ List[Dict[str, str]], None ] = self.extrair_dados(caminho_csv)
 
     def extrair_dados(self, caminho_csv: str) -> Union[ List[Dict[str, str]], None ]:
@@ -38,7 +38,7 @@ class Planilha:
             if(list(dado.keys()) == self.colunas_esperadas):
                 print('OK')
             else:
-                raise ErroColunasEsperadas('As colunas da planilha carregada não correspondem às esperadas pelo tipo Planilha PS.')
+                raise ErroColunasEsperadas('As colunas da planilha carregada não correspondem às esperadas pelo tipo Planilha 180.')
 
     """
     Métodos Getters e Setters

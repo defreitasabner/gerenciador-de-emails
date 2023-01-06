@@ -3,7 +3,7 @@ from tkinter import filedialog
 from dotenv import load_dotenv
 
 from InterfaceGrafica import InterfaceGrafica
-from Planilha import Planilha
+from PlanilhaPS import PlanilhaPS
 from Candidatos import Candidatos
 from GerenciadorCaminhos import GerenciadorCaminhos
 from GerenciadorEmails import GerenciadorEmails
@@ -89,7 +89,7 @@ class App(InterfaceGrafica):
                 title = 'Selecione a Planilha de Processo Seletivo (.csv)',
                 filetypes = (('CSV Files', '*.csv'),)
             )
-            self.planilha = Planilha(caminho_arquivo_csv)
+            self.planilha = PlanilhaPS(caminho_arquivo_csv)
             self.sistema_msg_sucesso('Planilha PS carregada com sucesso!')
             self.candidatos = Candidatos(self.planilha.dados)
             self.sistema_msg_sucesso('Dados dos Candidatos extraídos com sucesso!')

@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 
 from InterfaceGrafica import InterfaceGrafica
 from PlanilhaPS import PlanilhaPS
+from Planilha180 import Planilha180
 from Candidatos import Candidatos
+from GerenciadorFeedbacks import GerenciadorFeedbacks
 from GerenciadorCaminhos import GerenciadorCaminhos
 from GerenciadorEmails import GerenciadorEmails
 from GeradorMensagem import GeradorMensagem
@@ -28,6 +30,7 @@ class App(InterfaceGrafica):
         # Atributos referentes as demais classes
         self.planilha = None
         self.candidatos = None
+        self.feedbacks = None
         self.gerador_mensagens = GeradorMensagem()
         self.gerenciador_email = None
         self.gerenciador_caminhos = GerenciadorCaminhos()
@@ -97,6 +100,22 @@ class App(InterfaceGrafica):
             self.sistema_msg_erro(erro, 'carregar Planilha de PS')
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'carregar Planilhas de PS')
+
+    def carregar_planilha_180(self):
+        try:
+            caminho_arquivo_csv = filedialog.askopenfilename(
+                initialdir = DIRETORIO_PLANILHAS,
+                title = 'Selecione a Planilha de 180 (.csv)',
+                filetypes = (('CSV Files', '*.csv'),)
+            )
+            self.planilha = Planilha180(caminho_arquivo_csv)
+            self.sistema_msg_sucesso('Planilha 180 carregada com sucesso!')
+            self.feedbacks = GerenciadorFeedbacks(self.planilha.dados)
+            self.sistema_msg_sucesso('Todos os Feedbacks foram extraídos com sucesso!')
+        except ErroColunasEsperadas as erro:
+            self.sistema_msg_erro(erro, 'carregar Planilha de 180')
+        except Exception as erro_inesperado:
+            self.sistema_msg_erro(erro_inesperado, 'carregar Planilha de 180')
     
     def salvar_dados_email(self) -> None:
         try:

@@ -1,3 +1,9 @@
+"""
+Nesse arquivo está definida toda a Interface Gráfica, entretanto apenas a parte visual:
+- Toda lógica por trás do funcionamento do programa está no arquivo `App.py`
+- As funções disparadas por cada botão são declaradas aqui, mas são sobrescritas em `App.py`
+"""
+
 import tkinter
 import customtkinter
 from typing import Dict
@@ -8,6 +14,7 @@ from constantes import OPCOES_APARENCIA, OPCOES_TEMA, ETAPAS_PS
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
 customtkinter.set_default_color_theme(TEMA_PRINCIPAL)
 
+#TODO: Seria uma boa prática, separar cada parte da interface gráfica numa classe separada
 class InterfaceGrafica(customtkinter.CTk):
     """
     Classe responsável pela estruturação da interface gráfica do programa. Aqui são configuradas todas as widgets, bem como os comandos que elas irão disparar. Entretanto, a lógica por trás do funcionamento dessas widgets deve ser implementada em `App`, sobrescrevendo as funções herdadas por `InterfaceGrafica`.
@@ -109,16 +116,16 @@ class InterfaceGrafica(customtkinter.CTk):
             text='Verificar Candidatos',
             command=self.verificar_candidatos
         )
-        self.botao_verificar_msg = customtkinter.CTkButton(
+        self.botao_verificar_msg_ps = customtkinter.CTkButton(
             self.container_msg_email,
-            text='Verificar Mensagens',
-            command=self.evento_verificar_mensagens
+            text='Verificar Mensagens PS',
+            command=self.verificar_mensagens_ps
         )
-        self.botao_enviar_emails = customtkinter.CTkButton(
+        self.botao_enviar_emails_ps = customtkinter.CTkButton(
             self.container_msg_email,
-            text='Enviar E-mails',
+            text='Enviar E-mails PS',
             fg_color='green',
-            command=self.evento_enviar_emails
+            command=self.enviar_emails_ps
         )
         # Posicionando Containers na Principal
         self.principal.grid(row=0, column=1, padx=10, pady=10)
@@ -130,8 +137,8 @@ class InterfaceGrafica(customtkinter.CTk):
         self.selecao_etapa.grid(row=1, column=0, padx=10, pady=(0, 10))
         # Posicionando Elementos dentro do Container de msg e email
         self.botao_verificar_candidatos.grid(row=0, column=0, padx=5)
-        self.botao_verificar_msg.grid(row=0, column=1, padx=5)
-        self.botao_enviar_emails.grid(row=1, column=0, columnspan=2, padx=5, pady=10)
+        self.botao_verificar_msg_ps.grid(row=0, column=1, padx=5)
+        self.botao_enviar_emails_ps.grid(row=1, column=0, columnspan=2, padx=5, pady=10)
 
         # Criando elementos do Menu de configuração
         self.configuracoes = customtkinter.CTkFrame(self, width=200)
@@ -231,11 +238,39 @@ class InterfaceGrafica(customtkinter.CTk):
     def verificar_candidatos(self):
         self.sistema_msg_padrao('Verificando Candidatos...')
 
-    def evento_verificar_mensagens(self):
+    def verificar_mensagens_ps(self):
         self.sistema_msg_padrao('Verificando Mensagens...')
 
-    def evento_enviar_emails(self):
+    def enviar_emails_ps(self):
         self.sistema_msg_padrao('Enviando emails...')
+
+    # Métodos de ativação/desativação de botões
+    def desativar_botao_carregar_planilha_ps(self):
+        self.botao_carregar_planilha_ps.configure( state= 'disabled', fg_color='grey' )
+
+    def desativar_botao_carregar_planilha_180(self):
+        self.botao_carregar_planilha_180.configure( state= 'disabled', fg_color='grey' )
+
+    def ativar_botao_verificar_candidatos(self):
+        self.botao_verificar_candidatos.configure( state= 'enabled', fg_color='blue' )
+
+    def desativar_botao_verificar_candidatos(self):
+        self.botao_verificar_candidatos.configure( state= 'disabled', fg_color='grey' )
+    
+    def ativar_botao_verificar_mensagens_ps(self):
+        self.botao_verificar_msg_ps.configure( state= 'enabled', fg_color='blue' )
+
+    def desativar_botao_verificar_mensagens_ps(self):
+        self.botao_verificar_msg_ps.configure( state= 'disabled', fg_color='grey' )
+
+    def ativar_botao_enviar_emails_ps(self):
+        self.botao_enviar_emails_ps.configure( state= 'enabled', fg_color='green' )
+
+    def desativar_botao_enviar_emails_ps(self):
+        self.botao_enviar_emails_ps.configure( state= 'disabled', fg_color='grey' )
+
+    def desativar_seletor_etapas_ps(self):
+        self.selecao_etapa.configure( state= 'disabled' )
 
 if __name__ == "__main__":
     app = InterfaceGrafica()

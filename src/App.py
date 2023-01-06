@@ -96,6 +96,7 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Planilha PS carregada com sucesso!')
             self.candidatos = Candidatos(self.planilha.dados)
             self.sistema_msg_sucesso('Dados dos Candidatos extraídos com sucesso!')
+            self.desativar_botao_carregar_planilha_180()
         except ErroColunasEsperadas as erro:
             self.sistema_msg_erro(erro, 'carregar Planilha de PS')
         except Exception as erro_inesperado:
@@ -112,6 +113,12 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Planilha 180 carregada com sucesso!')
             self.feedbacks = GerenciadorFeedbacks(self.planilha.dados)
             self.sistema_msg_sucesso('Todos os Feedbacks foram extraídos com sucesso!')
+            # Desativa todos botoões relacionados ao PS para não confundir o usuário
+            self.desativar_botao_carregar_planilha_ps()
+            self.desativar_seletor_etapas_ps()
+            self.desativar_botao_verificar_candidatos()
+            self.desativar_botao_verificar_mensagens_ps()
+            self.desativar_botao_enviar_emails_ps()
         except ErroColunasEsperadas as erro:
             self.sistema_msg_erro(erro, 'carregar Planilha de 180')
         except Exception as erro_inesperado:
@@ -152,7 +159,7 @@ class App(InterfaceGrafica):
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'verificar Candidatos')
 
-    def evento_verificar_mensagens(self):
+    def verificar_mensagens_ps(self):
         try:
             if self.gerador_mensagens.mensagem_carregada != None:
                 self.sistema_msg_alerta('Mensagem de Aprovado:')
@@ -164,7 +171,7 @@ class App(InterfaceGrafica):
         except Exception as erro_inesperado:
             self.sistema_msg_erro(erro_inesperado, 'verificar mensagens')
     
-    def evento_enviar_emails(self):
+    def enviar_emails_ps(self):
         try:
             self.gerenciador_email.enviar_emails_ps(self.gerador_mensagens, self.candidatos.lista_candidatos)
             self.sistema_msg_sucesso('Todos e-mails foram enviados com sucesso!')

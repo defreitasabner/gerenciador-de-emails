@@ -8,7 +8,7 @@ import tkinter
 import customtkinter
 from typing import Dict
 
-from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL
+from config import APARENCIA_PRINCIPAL, TEMA_PRINCIPAL, AZUL_PADRAO
 from constantes import ETAPAS_PS
 
 customtkinter.set_appearance_mode(APARENCIA_PRINCIPAL)
@@ -52,7 +52,7 @@ class InterfaceGrafica(customtkinter.CTk):
         )
         self.botao_login = customtkinter.CTkButton(
             self.container_email,
-            text='Salvar dados',
+            text='Fazer Login',
             command=self.salvar_dados_email
         )
         self.planilhas_label = customtkinter.CTkLabel(
@@ -213,6 +213,24 @@ class InterfaceGrafica(customtkinter.CTk):
         self.sistema_msg_padrao('Enviando emails...')
 
     # Métodos de ativação/desativação de botões
+    def ativar_input_email(self):
+        self.input_email.configure( state='normal' )
+
+    def desativar_input_email(self):
+        self.input_email.configure( state='disabled' )
+
+    def ativar_input_senha(self):
+        self.input_senha.configure( state='normal' )
+
+    def desativar_input_senha(self):
+        self.input_senha.configure( state='disabled' )
+
+    def ativar_botao_login(self):
+        self.botao_login.configure( state='normal' )
+
+    def desativar_botao_login(self):
+        self.botao_login.configure( state='disabled', fg_color='grey' )
+
     def desativar_botao_carregar_planilha_ps(self):
         self.botao_carregar_planilha_ps.configure( state= 'disabled', fg_color='grey' )
 
@@ -220,22 +238,25 @@ class InterfaceGrafica(customtkinter.CTk):
         self.botao_carregar_planilha_180.configure( state= 'disabled', fg_color='grey' )
 
     def ativar_botao_verificar_candidatos(self):
-        self.botao_verificar_candidatos.configure( state= 'enabled', fg_color='blue' )
+        self.botao_verificar_candidatos.configure( state= 'normal', fg_color= AZUL_PADRAO )
 
     def desativar_botao_verificar_candidatos(self):
         self.botao_verificar_candidatos.configure( state= 'disabled', fg_color='grey' )
     
     def ativar_botao_verificar_mensagens_ps(self):
-        self.botao_verificar_msg_ps.configure( state= 'enabled', fg_color='blue' )
+        self.botao_verificar_msg_ps.configure( state= 'normal', fg_color= AZUL_PADRAO )
 
     def desativar_botao_verificar_mensagens_ps(self):
         self.botao_verificar_msg_ps.configure( state= 'disabled', fg_color='grey' )
 
     def ativar_botao_enviar_emails_ps(self):
-        self.botao_enviar_emails_ps.configure( state= 'enabled', fg_color='green' )
+        self.botao_enviar_emails_ps.configure( state= 'normal', fg_color='green' )
 
     def desativar_botao_enviar_emails_ps(self):
         self.botao_enviar_emails_ps.configure( state= 'disabled', fg_color='grey' )
+
+    def ativar_seletor_etapas_ps(self):
+        self.selecao_etapa.configure( state= 'normal' )
 
     def desativar_seletor_etapas_ps(self):
         self.selecao_etapa.configure( state= 'disabled' )

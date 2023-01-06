@@ -41,6 +41,18 @@ class App(InterfaceGrafica):
         self.verificar_arquivos_mensagens()
         self.login_automatico()
 
+        # Se o login automático for bem-sucedido os inputs serão desativados
+        if self.gerenciador_email != None:
+            self.desativar_input_email()
+            self.desativar_input_senha()
+            self.desativar_botao_login()
+
+        # Desativa os botões e vai liberando conforme o usuário utiliza o programa 
+        self.desativar_seletor_etapas_ps()
+        self.desativar_botao_verificar_candidatos()
+        self.desativar_botao_verificar_mensagens_ps()
+        self.desativar_botao_enviar_emails_ps()
+
     def mensagem_inicial(self) -> None:
         self.sistema_msg_padrao('Bem-vindo(a) ao Gerenciador de E-mails!')
         self.sistema_msg_padrao('Para Começar, execute os seguintes passos:')
@@ -96,7 +108,13 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Planilha PS carregada com sucesso!')
             self.candidatos = Candidatos(self.planilha.dados)
             self.sistema_msg_sucesso('Dados dos Candidatos extraídos com sucesso!')
+            # Desativa o botão que carrega a planilha de 180
             self.desativar_botao_carregar_planilha_180()
+            # Ativa os botões relativos ao processo seletivo
+            self.ativar_seletor_etapas_ps()
+            self.ativar_botao_verificar_candidatos()
+            self.ativar_botao_verificar_mensagens_ps()
+            self.ativar_botao_enviar_emails_ps()
         except ErroColunasEsperadas as erro:
             self.sistema_msg_erro(erro, 'carregar Planilha de PS')
         except Exception as erro_inesperado:
@@ -115,10 +133,6 @@ class App(InterfaceGrafica):
             self.sistema_msg_sucesso('Todos os Feedbacks foram extraídos com sucesso!')
             # Desativa todos botoões relacionados ao PS para não confundir o usuário
             self.desativar_botao_carregar_planilha_ps()
-            self.desativar_seletor_etapas_ps()
-            self.desativar_botao_verificar_candidatos()
-            self.desativar_botao_verificar_mensagens_ps()
-            self.desativar_botao_enviar_emails_ps()
         except ErroColunasEsperadas as erro:
             self.sistema_msg_erro(erro, 'carregar Planilha de 180')
         except Exception as erro_inesperado:

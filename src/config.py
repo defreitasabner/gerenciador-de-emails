@@ -11,6 +11,9 @@ OPCOES_TEMA = [
     "dark-blue"
 ]
 
+# Cores dos botões
+AZUL_PADRAO = '#1f538d'
+
 # Configurações da Interface Gráfica
 APARENCIA_PRINCIPAL = OPCOES_APARENCIA[0] # Dark fica melhor para visualizar msgs
 TEMA_PRINCIPAL = OPCOES_TEMA[0]

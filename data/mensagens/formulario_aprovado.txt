@@ -1,6 +1,61 @@
-Caro $candidato,
+<p><strong>Bom dia</strong>, <strong><span style="color:#9E1F22">$candidato</span>!</strong></p>
 
-Você foi aprovado na etapa de formulário! Em breve enviaremos um e-mail informando sobre as próximas etapas.
+<p>Gostaria de lhe informar que voc&ecirc; foi <strong><span style="background-color:#C75146">APROVADO</span></strong>&nbsp;na primeira etapa do processo seletivo, <strong>parab&eacute;ns</strong>!</p>
 
-Atenciosamente,
-Equipe
+<p>Nos pr&oacute;ximos dias, em cada semana ocorrer&aacute; uma etapa do nosso Processo Seletivo. Os e-mails informando o resultado de cada etapa ser&atilde;o enviados aos fins de semana, pass&iacute;vel de altera&ccedil;&atilde;o.</p>
+
+<p>Como voc&ecirc;s devem saber a&nbsp;pr&oacute;xima etapa consiste em uma <strong><span style="color:#9E1F22">DIN&Acirc;MICA EM GRUPO</span>.</strong></p>
+
+<p>Para voc&ecirc; candidato essa etapa consiste em apenas um dia assim,&nbsp;gostar&iacute;amos de saber qual o melhor dia e hor&aacute;rio para voc&ecirc;, portanto, preencha o <a href="https://docs.google.com/forms/d/e/1FAIpQLSd3ulkVg1NeU2jvvFxXbIyseqxQaiwzOVs8iJRFvbkBhGuEXA/viewform?usp=sharing" name="formulário de disponibilidade" target="_blank"><strong><span style="color:#9E1F22">formul&aacute;rio de disponibilidade&nbsp;</span></strong></a>.</p>
+
+<p>Caso n&atilde;o consiga clicar no link copie e cole o endere&ccedil;o a seguir.</p>
+
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSd3ulkVg1NeU2jvvFxXbIyseqxQaiwzOVs8iJRFvbkBhGuEXA/viewform?usp=sharing" target="_blank">https://docs.google.com/forms/d/e/1FAIpQLSd3ulkVg1NeU2jvvFxXbIyseqxQaiwzOVs8iJRFvbkBhGuEXA/viewform?usp=sharing</a></p>
+
+<p>Em breve voc&ecirc; receber&aacute; mais orienta&ccedil;&otilde;es para essa pr&oacute;xima fase. Estamos ansiosos para te conhecer e qualquer d&uacute;vida n&atilde;o hesite entrar em contato.</p>
+
+<p><strong><span style="color:#9E1F22">Atenciosamente,</span></strong></p>
+
+<table id="signature-model-1">
+	<tbody>
+		<tr>
+			<td><img alt="Sua foto ou logo" src="https://media.licdn.com/dms/image/C4E03AQFCZqsWnfR8Kw/profile-displayphoto-shrink_200_200/0/1570654426353?e=1678320000&amp;v=beta&amp;t=o-BYVDIqTQpG4HMhN197S70Q_pYSWFaay3RC6S66Rs0" /></td>
+			<td>
+			<table>
+				<tbody>
+					<tr>
+						<td><span style="font-size:14px"><strong>MinervaBots</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>Equipe de Competi&ccedil;&atilde;o de Rob&oacute;tica</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>UFRJ</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>minervabotscontato@gmail.com</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>https://minervabots.poli.ufrj.br/</strong></span></td>
+					</tr>
+					<tr>
+						<td>
+						<table>
+							<tbody>
+								<tr>
+									<td>
+									<p><a href="https://www.instagram.com/minervabots/" target="_blank"><img alt="" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/instagram.png" width="20px" /></a>&nbsp; &nbsp;<a href="https://www.facebook.com/MinervaBots" target="_blank"><img alt="Facebook" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/facebook.png" width="20px" /></a></p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<address>&nbsp;</address>

@@ -60,11 +60,11 @@ class Candidatos:
                     id = novo_candidato['id'],
                     nome = novo_candidato['nome'],
                     email = novo_candidato['email'],
-                    formulario = novo_candidato['formulario'],
-                    dinamica = novo_candidato['dinamica'],
-                    entrevista = novo_candidato['entrevista'],
-                    capacitacao = novo_candidato['capacitacao'],
-                    trainee = novo_candidato['trainee']
+                    formulario = self.__trata_dado(novo_candidato['formulario']),
+                    dinamica = self.__trata_dado(novo_candidato['dinamica']),
+                    entrevista = self.__trata_dado(novo_candidato['entrevista']),
+                    capacitacao = self.__trata_dado(novo_candidato['capacitacao']),
+                    trainee = self.__trata_dado(novo_candidato['trainee'])
                 )
             )
         
@@ -84,6 +84,12 @@ class Candidatos:
     ===
     Os métodos abaixo servem apenas para acessarmos (getters) e alterarmos (setters) os valores dos atributos privados da classe.
     """
+
+    def __trata_dado(self, dado_planilha_ps: str):
+        if type(dado_planilha_ps) == str:
+            return dado_planilha_ps.lower()
+        else:
+            pass
 
     @property
     def lista_candidatos(self) -> List[Candidato]:

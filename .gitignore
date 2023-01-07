@@ -3,3 +3,4 @@ rascunho.py
 *__pycache__/
 *.env
 *.vscode/
+*planilha_ps_controle.csv

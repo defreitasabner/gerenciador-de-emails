@@ -58,14 +58,33 @@ class GerenciadorEmails:
         # Verifica se todos os candidatos já foram avaliados na etapa selecionada
         self.verifica_se_todos_foram_avaliados(etapa_ps, lista_candidatos)
         
+        # Seleciona o nome e a ordem da etapa - GAMBIARRA
+        ordem_etapa = ''
+        nome_etapa = ''
+        if etapa_ps == 'formulario':
+            ordem_etapa = '1ª etapa'
+            nome_etapa = 'Formulário'
+        elif etapa_ps == 'dinamica':
+            ordem_etapa = '2ª etapa'
+            nome_etapa = 'Dinâmica'
+        elif etapa_ps == 'entrevista':
+            ordem_etapa = '3ª etapa'
+            nome_etapa = 'Entrevista'
+        elif etapa_ps == 'capacitacao':
+            ordem_etapa = '4ª etapa'
+            nome_etapa = 'Capacitação'
+        elif etapa_ps == 'trainee':
+            ordem_etapa = '5ª etapa'
+            nome_etapa = 'Trainee'
+
 
         # Configurações para enviar o email
         objeto_email = email.message.Message() # objeto email
-        objeto_email['Subject'] = f'[PROCESSO SELETIVO] - RESULTADO {etapa_ps.upper()}' # assunto do email
+        objeto_email['Subject'] = f'[PROCESSO SELETIVO MINERVABOTS] - Resultado da {ordem_etapa} - {nome_etapa}' # assunto do email
         objeto_email['From'] = self.email_usuario # nosso email
         objeto_email['To'] = None # iterar todos os candidatos na lista de candidatos
         password = self.senha # nossa senha de app do google - ver tutorial na Wiki
-        objeto_email.add_header('Content-Type', 'text/plain') # tipo de mensagem que será enviada
+        objeto_email.add_header('Content-Type', 'text/html') # tipo de mensagem que será enviada
 
         # fazendo conexões
         server = smtplib.SMTP('smtp.gmail.com: 587')

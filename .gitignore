@@ -3,5 +3,8 @@ rascunho.py
 *__pycache__/
 *.env
 *.vscode/
+
+# Ignorando arquivos de entrada e saída do sistema
 *planilha_ps_controle.csv
-*feedbacks/
+*_feedback.txt
+*_log.txt

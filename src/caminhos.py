@@ -6,6 +6,9 @@ DIRETORIO_DATA = 'data'
 # Caminho para feedbacks
 DIRETORIO_FEEDBACKS = os.path.join(DIRETORIO_DATA, 'feedbacks')
 
+# Caminho para logs
+DIRETORIO_LOGS = os.path.join(DIRETORIO_DATA, 'logs')
+
 # Caminho para Planilha
 DIRETORIO_PLANILHAS = os.path.join(DIRETORIO_DATA, 'planilhas')
 PLANILHA_TESTE = 'planilha_teste.csv'

@@ -58,16 +58,20 @@ class GeradorMensagem:
         if self.mensagem_carregada == None:
             raise Exception('Nenhuma mensagem foi carregada. Por favor, utilize o método carregar mensagem.')
         
+        # Extraindo o primeiro nome do candidato para adicionar à mensagem
+        primeiro_nome_candidato = candidato.nome.split()[0]
+
+        # Mensagem resultada iniciada vazia para receber a mensagem tratada
         mensagem_resultado = ''
 
         # Verifica se o Objeto candidato tem o valor aprovado ou reprovado na etapa da mensagem que está sendo gerada
 
         if getattr(candidato, self.mensagem_carregada.etapa_msg) == 'aprovado':
-            mensagem_tratada = self.mensagem_carregada.msg_aprovado.replace('$candidato', candidato.nome)
+            mensagem_tratada = self.mensagem_carregada.msg_aprovado.replace('$candidato', primeiro_nome_candidato)
             mensagem_resultado = mensagem_tratada
 
         elif getattr(candidato, self.mensagem_carregada.etapa_msg) == 'reprovado':
-            mensagem_tratada = self.mensagem_carregada.msg_reprovado.replace('$candidato', candidato.nome)
+            mensagem_tratada = self.mensagem_carregada.msg_reprovado.replace('$candidato', primeiro_nome_candidato)
             mensagem_resultado = mensagem_tratada
 
         else:

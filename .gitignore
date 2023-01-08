@@ -4,3 +4,4 @@ rascunho.py
 *.env
 *.vscode/
 *planilha_ps_controle.csv
+*feedbacks/

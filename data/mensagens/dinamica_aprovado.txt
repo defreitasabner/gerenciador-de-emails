@@ -1,1 +1,57 @@
-$candidato Aprovado
+<p><strong>Bom dia</strong>, <strong>$candidato</strong>!</p>
+
+<p>Gostaria de lhe informar que voc&ecirc; foi <strong><span style="background-color:#C75146">APROVADO</span></strong> na segunda etapa do processo seletivo, parab&eacute;ns!</p>
+
+<p>A pr&oacute;xima etapa consiste de uma <strong><span style="color:#9E1F22">ENTREVISTA</span></strong>.</p>
+
+<p>A entrevista est&aacute; prevista para durar em torno de 1h. Seguiremos os hor&aacute;rios que foram respondidos no formul&aacute;rio de disponibilidade enviado antes de Etapa da Din&acirc;mica.</p>
+
+<p>Assim que sua entrevista for marcado enviaremos um <span style="color:#9E1F22"><strong>e-mail</strong></span> informando dia, hor&aacute;rio e link para a chamada que o ocorrer&aacute; no <span style="color:#9E1F22"><strong>Google Meet</strong></span>.&nbsp;</p>
+
+<p>Novamente parab&eacute;ns pela aprova&ccedil;&atilde;o nesta etapa!</p>
+
+<p><strong><span style="color:#9E1F22">Atenciosamente,</span></strong></p>
+
+<table id="signature-model-1">
+	<tbody>
+		<tr>
+			<td><img alt="Sua foto ou logo" src="https://media.licdn.com/dms/image/C4E03AQFCZqsWnfR8Kw/profile-displayphoto-shrink_200_200/0/1570654426353?e=1678320000&amp;v=beta&amp;t=o-BYVDIqTQpG4HMhN197S70Q_pYSWFaay3RC6S66Rs0" /></td>
+			<td>
+			<table>
+				<tbody>
+					<tr>
+						<td><span style="font-size:14px"><strong>MinervaBots</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>Equipe de Competi&ccedil;&atilde;o de Rob&oacute;tica</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>UFRJ</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>minervabotscontato@gmail.com</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>https://minervabots.poli.ufrj.br/</strong></span></td>
+					</tr>
+					<tr>
+						<td>
+						<table>
+							<tbody>
+								<tr>
+									<td>
+									<p><a href="https://www.instagram.com/minervabots/" target="_blank"><img alt="" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/instagram.png" width="20px" /></a>&nbsp; &nbsp;<a href="https://www.facebook.com/MinervaBots" target="_blank"><img alt="Facebook" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/facebook.png" width="20px" /></a></p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<address>&nbsp;</address>

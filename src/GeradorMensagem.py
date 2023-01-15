@@ -59,7 +59,7 @@ class GeradorMensagem:
             raise Exception('Nenhuma mensagem foi carregada. Por favor, utilize o método carregar mensagem.')
         
         # Extraindo o primeiro nome do candidato para adicionar à mensagem
-        primeiro_nome_candidato = candidato.nome.split()[0]
+        primeiro_nome_candidato = candidato.nome.split(sep=" ")[0]
 
         # Mensagem resultada iniciada vazia para receber a mensagem tratada
         mensagem_resultado = ''

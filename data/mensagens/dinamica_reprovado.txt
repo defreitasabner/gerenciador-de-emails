@@ -1,1 +1,53 @@
-$candidato Reprovado
+<p><strong>Bom dia</strong>, <strong>$candidato</strong>!</p>
+
+<p>Infelizmente por n&atilde;o conseguirmos realizar a sua din&acirc;mica, voc&ecirc; foi&nbsp;<strong><span style="background-color:#C75146">REPROVADO</span></strong> nessa&nbsp;etapa.&nbsp;</p>
+
+<p>Cada Processo Seletivo &eacute; &uacute;nico e esperamos que ainda tenha vontade de participar da equipe, esse resultado n&atilde;o lhe impede de tentar novamente no futuro.</p>
+
+<p>Esperamos ver voc&ecirc; novamente em nosso pr&oacute;ximo PS!</p>
+
+<p><strong><span style="color:#9E1F22">Atenciosamente,</span></strong></p>
+
+<table id="signature-model-1">
+	<tbody>
+		<tr>
+			<td><img alt="Sua foto ou logo" src="https://media.licdn.com/dms/image/C4E03AQFCZqsWnfR8Kw/profile-displayphoto-shrink_200_200/0/1570654426353?e=1678320000&amp;v=beta&amp;t=o-BYVDIqTQpG4HMhN197S70Q_pYSWFaay3RC6S66Rs0" /></td>
+			<td>
+			<table>
+				<tbody>
+					<tr>
+						<td><span style="font-size:14px"><strong>MinervaBots</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>Equipe de Competi&ccedil;&atilde;o de Rob&oacute;tica</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>UFRJ</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>minervabotscontato@gmail.com</strong></span></td>
+					</tr>
+					<tr>
+						<td><span style="color:#808080"><strong>https://minervabots.poli.ufrj.br/</strong></span></td>
+					</tr>
+					<tr>
+						<td>
+						<table>
+							<tbody>
+								<tr>
+									<td>
+									<p><a href="https://www.instagram.com/minervabots/" target="_blank"><img alt="" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/instagram.png" width="20px" /></a>&nbsp; &nbsp;<a href="https://www.facebook.com/MinervaBots" target="_blank"><img alt="Facebook" src="https://d16zac8h4kza33.cloudfront.net/marketing-tools/mail-signature/icons/social-icons/facebook.png" width="20px" /></a></p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<address>&nbsp;</address>

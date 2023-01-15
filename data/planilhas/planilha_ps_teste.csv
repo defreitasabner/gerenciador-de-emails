@@ -1,3 +1,4 @@
 id,nome,email,formulario,dinamica,entrevista,capacitacao,trainee
-1,Dhayse,dhayse@poli.ufrj.br,aprovado
-2,Abner,defreitasabner@gmail.com,reprovado
+1,Dhayse,dhayse@poli.ufrj.br,aprovado,aprovado,
+2,Abner Freitas,defreitasabner@gmail.com,reprovado,aprovado,
+3, Dhayse Tito,dhaysetito@gmail.com,aprovado,reprovado,
